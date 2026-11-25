@@ -5,5 +5,5 @@
 		'regenerator-runtime',
 		'wp-element'
 	),
-	'version' => 'fcd6a63f76c1c92423ba'
+	'version' => '36a897726bfc8a123939'
 );

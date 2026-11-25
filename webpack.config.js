@@ -3,6 +3,7 @@
  * External dependencies
  */
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 
@@ -104,6 +105,9 @@ const webpackConfig = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'import.meta.url': JSON.stringify('file:///env.js'),
+        }),
         new DependencyExtractionWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',

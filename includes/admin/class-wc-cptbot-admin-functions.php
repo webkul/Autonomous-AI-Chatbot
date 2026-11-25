@@ -112,7 +112,7 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 		/**
 		 * Adds custom row meta links to the plugin listing in the WordPress admin.
 		 * This function is hooked into the plugin_row_meta filter and adds custom links
-		 * for documentation and community support to the WooCommerce ChatGPT Chatbot plugin.
+		 * for community support to the Autonomous AI Chatbot plugin.
 		 *
 		 * @param  array  $links An array of existing plugin row meta links.
 		 * @param  string $file  The plugin's main file.
@@ -125,7 +125,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 			}
 
 			$row_meta = array(
-				'docs' => '<a href="' . esc_url(apply_filters('wcaichatbot_docs_url', 'https://webkul.com/blog/woocommerce-chatgpt-chatbot-documentation/')) . '" aria-label="' . esc_attr__('View WooCommerce Chatgpt Chatbot documentation', 'autonomous-ai-chatbot') . '">' . esc_html__('Docs', 'autonomous-ai-chatbot') . '</a>',
 				'support' => '<a href="' . esc_url(apply_filters('wcaichatbot_community_support_url', 'https://webkul.uvdesk.com/')) . '" aria-label="' . esc_attr__('Visit Webkul community forums', 'autonomous-ai-chatbot') . '">' . esc_html__('Community support', 'autonomous-ai-chatbot') . '</a>',
 			);
 
@@ -170,6 +169,26 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 		public function wc_chatgpt_configuration()
 		{
 			new Settings\Wc_Cptbot_Configuration_Ui();
+		}
+
+		/**
+		 * Displays the Extensions page in the ChatGPT menu.
+		 */
+		public function wc_chatgpt_extensions()
+		{
+			?>
+			<webkul-extensions></webkul-extensions>
+			<?php
+		}
+
+		/**
+		 * Displays the Support & Services page in the ChatGPT menu.
+		 */
+		public function wc_chatgpt_support_services()
+		{
+			?>
+			<wk-area></wk-area>
+			<?php
 		}
 
 		/**
@@ -353,6 +372,26 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 					// Enqueue dashboard.js script.
 					$this->wc_cptbot_enqueue_bundle('wc_cptbot-dashboard-script', 'dashboard', array('jquery'), false);
 				}
+				if ('extensions' === $tab) {
+					wp_register_script(
+						'wk-ext-script',
+						'https://wpdemo.webkul.com/wk-extensions/client/wk.ext.js',
+						array(),
+						WC_CPTBOT_SCRIPT_VERSION,
+						true
+					);
+					wp_enqueue_script('wk-ext-script');
+				}
+				if ('support-and-services' === $tab) {
+					wp_register_script(
+						'wk-service-support-script',
+						'https://webkul.com/common/modules/wksas.bundle.js',
+						array(),
+						WC_CPTBOT_SCRIPT_VERSION,
+						true
+					);
+					wp_enqueue_script('wk-service-support-script');
+				}
 				if ('content' === $tab) {
 					// Enqueue content.css style.
 					wp_enqueue_style('wc_cptbot-content-style', WC_CPTBOT_PLUGIN_URL . 'assets/css/content.css', array('wp-components'), WC_CPTBOT_SCRIPT_VERSION);
@@ -428,7 +467,7 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 						'nonce' => wp_create_nonce('ajaxnonce'),
 						'admin_url' => admin_url(),
 						'translation' => $translations->wc_cpt_get_all_admin_translations(),
-						'product_count' => (class_exists('WooCommerce') && isset($this->helper->wc_cptbot_get_all_woo_products_count()['total_count']['count'])) ? intval($this->helper->wc_cptbot_get_all_woo_products_count()['total_count']['count']) : 0,
+						'product_count' => apply_filters('wcaichatbot_woo_product_count', 0),
 						'trained_count' => !empty(get_option('wc_cptbot_scheduler_trained_count')) ? intval(get_option('wc_cptbot_scheduler_trained_count')) : 0,
 						'posts_pages_trained_count' => (int) $this->helper->wc_cptbot_get_posts_pages_count()['synced'],
 						'has_trained_data' => (!empty(get_option('wc_cptbot_scheduler_trained_count')) && intval(get_option('wc_cptbot_scheduler_trained_count')) > 0) || ((int) $this->helper->wc_cptbot_get_posts_pages_count()['synced'] > 0),
@@ -501,341 +540,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 							'waiting' => esc_html__('Please wait, We are preparing to download the ai model.', 'autonomous-ai-chatbot'),
 						),
 					)
-				);
-			}
-		}
-		/**
-		 * Syncs all products with the ChatGPT system.
-		 */
-		public function wc_cptbot_sync_all_product()
-		{
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				wp_send_json(
-					array(
-						'code' => 403,
-						'status' => esc_html__('Error', 'autonomous-ai-chatbot'),
-						'is_pro' => false,
-						'message' => esc_html__('Product training requires the WooCommerce PRO addon.', 'autonomous-ai-chatbot'),
-					)
-				);
-				return;
-			}
-
-			// Verify the nonce for security purposes.
-			if (!empty($_POST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajaxnonce')) {
-				$post = !empty($_POST) ? wcaichatbot_clean($_POST) : array();
-
-				// Check if training is already complete to prevent unnecessary retries
-				$trained_count = empty(get_option('wc_cptbot_scheduler_trained_count')) ? 0 : intval(get_option('wc_cptbot_scheduler_trained_count'));
-				$total_products_result = $this->helper->wc_cptbot_get_all_woo_products_count();
-				$total_count = !empty($total_products_result['total_count'][0]['count']) ? intval($total_products_result['total_count'][0]['count']) : 0;
-
-				// Initialize response with default values to prevent undefined in frontend
-				$data = array(
-					'code' => 400,
-					'status' => esc_html__('Error', 'autonomous-ai-chatbot'),
-					'products_trained' => $trained_count,
-					'total_count' => $total_count,
-					'offset' => isset($post['offset']) ? intval($post['offset']) : 0,
-					'limit' => isset($post['limit']) ? intval($post['limit']) : WC_CPTBOT_PRODUCTS_PER_BATCH,
-					'products' => array(),
-				);
-
-				$force = !empty($post['force']) ? true : false;
-
-				$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-				$proceed = false;
-				if ('chromadb' === $vector_db) {
-					$chroma_base = get_option('wc_cptbot_chroma_base_url');
-					$chroma_col = get_option('wc_cptbot_chroma_collection');
-					if (!empty($chroma_base) && !empty($chroma_col)) {
-						$proceed = true;
-					}
-				} else {
-					$index_host = get_option('wc_cptbot_pinecone_index_host');
-					if (empty($index_host)) {
-						$index_host = get_option('wc_cptbot_pinecone_host');
-					}
-					if (method_exists($this->pinecone, 'describe_listing')) {
-						$listing = $this->pinecone->describe_listing();
-						if (!empty($index_host) && 404 !== $listing['code']) {
-							$proceed = true;
-						}
-					} elseif (!empty($index_host)) {
-						$proceed = true;
-					}
-				}
-				if ($proceed) {
-
-					$limit = !empty(get_option('wc_cptbot_scheduler_limit')) ? intval(get_option('wc_cptbot_scheduler_limit')) : intval($post['limit']);
-					$offset = !empty(get_option('wc_cptbot_scheduler_offset')) ? intval(get_option('wc_cptbot_scheduler_offset')) : intval($post['offset']);
-
-					$products_arr = $this->helper->wc_cptbot_get_all_woo_products($limit, $offset);
-					$products = !empty($products_arr['products']) ? $products_arr['products'] : array();
-
-					$status = $this->wc_cptbot_save_product_action_callback($products, $force);
-
-					$data['products_trained'] = empty(get_option('wc_cptbot_scheduler_trained_count')) ? 0 : intval(get_option('wc_cptbot_scheduler_trained_count'));
-					$data['offset'] = $offset;
-					$data['limit'] = $limit;
-
-					if (!$status['error']) {
-						$this->helper->wc_cptbot_save_scheduled_actions($products, $status);
-
-						update_option('wc_cptbot_scheduler_limit', $limit);
-
-						$data['status'] = esc_html__('Products Trained Successfully', 'autonomous-ai-chatbot');
-						$data['code'] = 200;
-						$data['products'] = $products;
-					} else {
-						$data['status'] = esc_html__('Products Training Failed', 'autonomous-ai-chatbot');
-						$data['products'] = array();
-						$data['code'] = 400;
-					}
-				} else {
-					$data['status'] = esc_html__('Index not found', 'autonomous-ai-chatbot');
-					$data['code'] = 404;
-				}
-
-				wp_send_json($data);
-			} else {
-				$error_response = array(
-					'code' => 403,
-					'status' => esc_html__('Nonce verification failed', 'autonomous-ai-chatbot'),
-					'success' => false,
-				);
-				wp_send_json($error_response);
-			}
-		}
-
-		/**
-		 * Reset sync state - allows restarting sync from beginning or after abort.
-		 *
-		 * @return void
-		 */
-		public function wc_cptbot_reset_sync()
-		{
-			// Verify the nonce for security purposes.
-			if (!empty($_POST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajaxnonce')) {
-				// Clear all sync state.
-				delete_option('wc_cptbot_scheduler_offset');
-				delete_option('wc_cptbot_scheduler_limit');
-				delete_option('wc_cptbot_scheduler_trained_count');
-
-				$response = array(
-					'code' => 200,
-					'status' => esc_html__('Sync reset successfully', 'autonomous-ai-chatbot'),
-					'success' => true,
-				);
-
-				wp_send_json($response);
-			} else {
-
-				$error_response = array(
-					'code' => 403,
-					'status' => esc_html__('Nonce verification failed', 'autonomous-ai-chatbot'),
-					'success' => false,
-				);
-
-				wp_send_json($error_response);
-			}
-		}
-
-		/**
-		 * Reset training data and scheduled actions.
-		 *
-		 * @return void
-		 */
-		public function wc_cptbot_reset_training_data()
-		{
-
-			// Verify the nonce for security purposes.
-			if (!empty($_POST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajaxnonce')) {
-				global $wpdb;
-
-				// Clear all sync state
-				delete_option('wc_cptbot_scheduler_offset');
-				delete_option('wc_cptbot_scheduler_limit');
-				delete_option('wc_cptbot_scheduler_trained_count');
-
-				$table_name = esc_sql($wpdb->prefix . 'cptbot_scheduled_actions');
-
-				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-				$wpdb->query("TRUNCATE TABLE {$table_name}");
-
-				// Also delete training postmeta for products, posts, and pages.
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery
-				$wpdb->query(
-					"DELETE FROM `{$wpdb->prefix}postmeta` WHERE meta_key IN ('cptbot_product_data', 'cptbot_post_data')"
-				);
-
-				$response = array(
-					'code' => 200,
-					'status' => esc_html__('Training data reset successfully', 'autonomous-ai-chatbot'),
-					'success' => true,
-				);
-				wp_send_json($response);
-			} else {
-				$error_response = array(
-					'code' => 403,
-					'status' => esc_html__('Nonce verification failed', 'autonomous-ai-chatbot'),
-					'success' => false,
-				);
-				wp_send_json($error_response);
-			}
-		}
-
-		/**
-		 * Callback function to save product action and data for ChatGPT.
-		 *
-		 * @param array $products Array of products to save action and data for.
-		 *
-		 * @return array Status of the action and any error information.
-		 */
-		public function wc_cptbot_save_product_action_callback($products, $force = false)
-		{
-			try {
-				$model_type = get_option('cpt_bot_model_type', 'onnx');
-				if (!empty($products)) {
-					$fail_count = 0;
-					$success_count = 0;
-
-					foreach ($products as $product) {
-						$product_id = is_array($product) ? $product['ID'] : $product->ID;
-
-						$is_trained = get_post_meta($product_id, 'cptbot_product_data', true);
-
-						// Check for DB mismatch
-						$db_mismatch = false;
-						if (!empty($is_trained)) {
-							$is_trained_data = maybe_unserialize($is_trained);
-							$content_data = isset($is_trained_data['content']) ? json_decode($is_trained_data['content'], true) : array();
-							$trained_db = $content_data['trained_db'] ?? '';
-							$current_vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-
-							if ($trained_db !== $current_vector_db) {
-								$db_mismatch = true;
-							}
-						}
-
-						if (empty($is_trained) || $force || $db_mismatch) {
-							$product = wc_get_product((int) $product_id);
-							if (!$product) {
-								continue;
-							}
-							$product_data_arr = $this->helper->wc_cptbot_get_product_data_for_training($product);
-
-							$product_meta_data_arr = $this->helper->wc_cptbot_get_product_data_for_bot($product);
-
-							$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-							$product_meta_data_arr['trained_db'] = $vector_db;
-							$product_meta_data_arr['model_type'] = $model_type;
-
-							if ('chromadb' === $vector_db) {
-								if (method_exists($this->pinecone, 'enhance_metadata_with_categories_and_tags')) {
-									$product_meta_data_arr = $this->pinecone->enhance_metadata_with_categories_and_tags($product_meta_data_arr, $product->get_id());
-								}
-							} else {
-								$categories_term = get_the_terms($product->get_id(), 'product_cat');
-								$category_ids = array();
-								$category_names = array();
-								if (!empty($categories_term) && !is_wp_error($categories_term)) {
-									foreach ($categories_term as $term) {
-										$category_ids[] = (int) $term->term_id;
-										$category_names[] = $term->name;
-									}
-								}
-								if (!empty($category_ids)) {
-									$product_meta_data_arr['category_ids'] = wp_json_encode($category_ids);
-									$product_meta_data_arr['category_names'] = implode('|', $category_names);
-								}
-
-								$tags_term = get_the_terms($product->get_id(), 'product_tag');
-								if (!empty($tags_term) && !is_wp_error($tags_term)) {
-									$product_tags = array();
-									foreach ($tags_term as $term) {
-										$product_tags[] = $term->name;
-									}
-									$product_meta_data_arr['product_tags'] = implode('|', $product_tags);
-								}
-							}
-
-							if ('gemini' === $model_type) {
-								if (!class_exists('\WCAICHATBOT\Helper\Wc_Cptbot_Gemini')) {
-									include_once WC_CPTBOT_PLUGIN_FILE . 'helper/class-wc-cptbot-gemini.php';
-								}
-								$gemini_helper = new \WCAICHATBOT\Helper\Wc_Cptbot_Gemini();
-								$result = $gemini_helper->wc_cptbot_create_embedding($product_data_arr);
-							} else {
-								$result = $this->openai->wc_cptbot_create_embedding($product_data_arr, 384);
-							}
-							$vector_data = !empty($result['data']) ? $result['data'][0]['embedding'] : array();
-
-							$train_resp = $this->pinecone->upsert($vector_data, 'product', $product->get_id(), $product_meta_data_arr);
-
-							if ($train_resp) {
-								$cptbot_data = array(
-									'content' => wp_json_encode($product_meta_data_arr),
-									'token' => isset($result['usage']['total_tokens']) ? $result['usage']['total_tokens'] : 0,
-									'type' => 'products',
-									'estimated' => isset($result['usage']['total_tokens']) ? ($result['usage']['total_tokens'] / 1000) * 0.0004 : 0,
-								);
-
-								$serialized_serialized_data = maybe_serialize($cptbot_data);
-								update_post_meta($product->get_id(), 'cptbot_product_data', $serialized_serialized_data);
-
-								$trained_count = get_option('wc_cptbot_scheduler_trained_count');
-								if (empty($trained_count)) {
-									$trained_count = 0;
-								}
-
-								$exists = $this->helper->wc_cptbot_product_exists_in_actions($product->get_id());
-
-								if (empty($exists)) {
-									$trained_count = (int) $trained_count + 1;
-								}
-
-								update_option('wc_cptbot_scheduler_trained_count', $trained_count);
-								++$success_count;
-
-							} else {
-								++$fail_count;
-								update_post_meta($product->get_id(), 'cptbot_product_data', false);
-
-								// Create failed action entry
-								$status_arr = array('status' => 'failed');
-								$product_arr = array(array('ID' => $product->get_id()));
-								$this->helper->wc_cptbot_save_scheduled_actions($product_arr, $status_arr);
-							}
-						} elseif (!empty($is_trained)) {
-							$meta_content = maybe_unserialize($is_trained);
-						}
-					}
-
-					$limit = get_option('wc_cptbot_scheduler_limit');
-					$limit = !empty($limit) ? intval($limit) : WC_CPTBOT_PRODUCTS_PER_BATCH;
-					$offset = get_option('wc_cptbot_scheduler_offset');
-					$offset = !empty($offset) ? intval($offset) : 0;
-					$new_offset = $offset + $limit;
-					update_option('wc_cptbot_scheduler_offset', $new_offset);
-
-					return array(
-						'status' => ($fail_count > 0) ? 'partial' : 'success',
-						'error' => false,
-						'success_count' => $success_count,
-						'fail_count' => $fail_count,
-					);
-				} else {
-					update_option('wc_cptbot_scheduler_offset', 0);
-					return array(
-						'status' => esc_html__('Empty Products', 'autonomous-ai-chatbot'),
-						'error' => true,
-					);
-				}
-			} catch (\Throwable $th) {
-				return array(
-					'status' => 'fail',
-					'error' => $th->getMessage(),
 				);
 			}
 		}
@@ -1219,199 +923,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 
 
 		/**
-		 * Saves product action for WC CPTBot.
-		 *
-		 * @param  int     $post_id ID of the post being saved.
-		 * @param  WP_Post $post    Post object.
-		 * @param  bool    $update  Whether this is an existing post being updated or not.
-		 * @return void
-		 */
-		public function wc_cptbot_save_product_action($post_id, $post, $update)
-		{
-			do_action('wcaichatbot_post_saved', $post_id, $post, $update);
-
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				return;
-			}
-
-			$auto_sync_disabled = false;
-
-			if ('product' === $post->post_type && 'publish' === $post->post_status) {
-				$cptbot_product_data = get_post_meta($post_id, 'cptbot_product_data', true);
-				if ($update) {
-					update_post_meta($post_id, 'cptbot_product_data', false);
-				}
-				$product_id = array();
-				$product = wc_get_product($post_id);
-				$product_data = $this->helper->wc_cptbot_get_product_data_for_training($product);
-				$product_meta_data_arr = $this->helper->wc_cptbot_get_product_data_for_bot($product);
-
-				$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-				$product_meta_data_arr['trained_db'] = $vector_db;
-
-				if ('chromadb' === $vector_db) {
-					if (method_exists($this->pinecone, 'enhance_metadata_with_categories_and_tags')) {
-						$product_meta_data_arr = $this->pinecone->enhance_metadata_with_categories_and_tags($product_meta_data_arr, $product->get_id());
-					}
-				} else {
-					// For Pinecone and other DBs, add category and tag metadata
-					$categories_term = get_the_terms($product->get_id(), 'product_cat');
-					$category_ids = array();
-					$category_names = array();
-					if (!empty($categories_term) && !is_wp_error($categories_term)) {
-						foreach ($categories_term as $term) {
-							$category_ids[] = (int) $term->term_id;
-							$category_names[] = $term->name;
-						}
-					}
-					if (!empty($category_ids)) {
-						$product_meta_data_arr['category_ids'] = wp_json_encode($category_ids);
-						$product_meta_data_arr['category_names'] = implode('|', $category_names);
-					}
-
-					// Add tags
-					$tags_term = get_the_terms($product->get_id(), 'product_tag');
-					if (!empty($tags_term) && !is_wp_error($tags_term)) {
-						$product_tags = array();
-						foreach ($tags_term as $term) {
-							$product_tags[] = $term->name;
-						}
-						$product_meta_data_arr['product_tags'] = implode('|', $product_tags);
-					}
-				}
-
-				// Create Data Embeddings.
-				$model_type = get_option('cpt_bot_model_type', 'onnx');
-				if ('gemini' === $model_type) {
-					if (!class_exists('WCAICHATBOT\Helper\Wc_Cptbot_Gemini')) {
-						include_once WC_CPTBOT_PLUGIN_DIR . 'helper/class-wc-cptbot-gemini.php';
-					}
-					$gemini_helper = new helper\Wc_Cptbot_Gemini();
-					$result = $gemini_helper->wc_cptbot_create_embedding(wp_json_encode($product_data));
-				} elseif ('onnx' === $model_type || 'ternlight' === $model_type) {
-					// For ONNX/Ternlight, we cannot generate embeddings in PHP.
-					// We set a transient to trigger client-side sync on the next page load.
-					if ($post->post_date === $post->post_modified) {
-						$js_data = array(
-							$product->get_id() => $product_data,
-						);
-					} else {
-						$js_data = array(
-							$product->get_id() => $product_data,
-							'update' => true,
-						);
-					}
-
-					$transient_key = 'wc_cptbot_onnx_sync_' . get_current_user_id();
-					set_transient($transient_key, wp_json_encode($js_data), 60);
-					return; // Exit here, the JS will handle the rest.
-				} else {
-					$result = $this->openai->wc_cptbot_create_embedding(wp_json_encode($product_data), 384);
-				}
-				$vector_data = !empty($result['data']) && !empty($result['data'][0]['embedding']) ? $result['data'][0]['embedding'] : array();
-				$train_resp = $this->pinecone->upsert($vector_data, 'product', $product->get_id(), $product_meta_data_arr, false);
-
-				if ($train_resp) {
-					// Prepare base data
-					$cptbot_data = array(
-						'content' => wp_json_encode($product_data),
-						'type' => 'products',
-					);
-
-					// Add usage data only if it exists (OpenAI provides this, Gemini might not)
-					if (isset($result['usage']) && isset($result['usage']['total_tokens'])) {
-						$cptbot_data['token'] = $result['usage']['total_tokens'];
-						$cptbot_data['estimated'] = ($result['usage']['total_tokens'] / 1000) * 0.0004;
-					}
-
-					$serialized_serialized_data = maybe_serialize($cptbot_data);
-					$trained_count = get_option('wc_cptbot_scheduler_trained_count', true);
-					if (empty($trained_count)) {
-						$trained_count = 0;
-					}
-
-					$exists = $this->helper->wc_cptbot_product_exists_in_actions($post_id);
-
-					if (empty($exists)) {
-						$trained_count = (int) $trained_count + 1;
-					}
-
-					update_option('wc_cptbot_scheduler_trained_count', $trained_count);
-
-					if (empty($cptbot_product_data)) {
-						$status = array('status' => 'success');
-						$product_id[] = array('ID' => $post_id);
-						$this->helper->wc_cptbot_save_scheduled_actions($product_id, $status);
-					} else {
-						// Still update the action status to success.
-						$status = array('status' => 'success');
-						$product_id[] = array('ID' => $post_id);
-						$this->helper->wc_cptbot_save_scheduled_actions($product_id, $status);
-					}
-					update_post_meta($product->get_id(), 'cptbot_product_data', $serialized_serialized_data);
-
-				} else {
-					$cptbot_product_data = get_post_meta($product->get_id(), 'cptbot_product_data', true);
-					if (empty($cptbot_product_data)) {
-						$status = array('status' => 'fail');
-						$product_id[] = array('ID' => $post_id);
-						$this->helper->wc_cptbot_save_scheduled_actions($product_id, $status);
-					}
-					update_post_meta($product->get_id(), 'cptbot_product_data', false);
-				}
-			}
-		}
-
-
-		/**
-		 * Delete product action for WC CPTBot.
-		 *
-		 * @param  int     $post_id ID of the post being saved.
-		 * @param  WP_Post $post    Post object.
-		 * @return void
-		 */
-		public function wc_cptbot_delete_product_action($post_id, $post = null)
-		{
-			do_action('wcaichatbot_post_deleted', $post_id, $post);
-
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				return;
-			}
-
-			if (!$post || !($post instanceof \WP_Post)) {
-				$post = get_post($post_id);
-			}
-
-			if ($post && 'product' === $post->post_type) {
-				$is_trained = get_post_meta($post_id, 'cptbot_product_data', true);
-
-				if ($is_trained) {
-					$vector_id = 'product-' . $post_id;
-					$data = $this->pinecone->delete($vector_id);
-
-					$is_error = false;
-					if ($data === false) {
-						$is_error = true;
-					} elseif (is_string($data) && strpos($data, 'Error:') !== false) {
-						$is_error = true;
-					}
-
-					if (!$is_error) {
-						$trained_count = get_option('wc_cptbot_scheduler_trained_count', true);
-						$count = (int) $trained_count - 1;
-						if ($count < 0) {
-							$count = 0;
-						}
-						update_option('wc_cptbot_scheduler_trained_count', $count);
-						delete_post_meta($post_id, 'cptbot_product_data');
-						$this->helper->wc_cptbot_delete_scheduled_action_by_product_id($post_id);
-					}
-				}
-			}
-		}
-
-
-		/**
 		 * Adds MCE font options for the editor.
 		 *
 		 * @param  string $editor_id The ID of the editor.
@@ -1427,11 +938,7 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 
 			$supported_types = apply_filters('wcaichatbot_editor_description_post_types', array('post', 'page'));
 
-			if ('product' === $screen->post_type) {
-				if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-					return $editor_id;
-				}
-			} elseif (!in_array($screen->post_type, $supported_types, true)) {
+			if (!in_array($screen->post_type, $supported_types, true)) {
 				return $editor_id;
 			}
 
@@ -1441,104 +948,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 					break;
 			}
 			return $editor_id;
-		}
-
-
-		/**
-		 * Output ONNX sync script in admin footer if transient is set.
-		 */
-		public function wc_cptbot_footer_onnx_sync()
-		{
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				return;
-			}
-			$transient_key = 'wc_cptbot_onnx_sync_' . get_current_user_id();
-			$sync_data = get_transient($transient_key);
-
-			if (false !== $sync_data) {
-				delete_transient($transient_key);
-				?>
-
-				<script type="text/javascript">
-					window.addEventListener('load', function () {
-						if (typeof window.wc_cptbot_update_onnx_data === 'function') {
-							let isSyncing = false;
-
-							// Wait for model to be ready.
-							const checkSession = setInterval(() => {
-								if (isSyncing) return; // Prevent overlapping calls
-
-								isSyncing = true;
-
-								window.wc_cptbot_update_onnx_data(<?php echo wp_kses_post($sync_data); ?>).then(result => {
-									if (result && result.error === "ONNX Session not initialized") {
-										isSyncing = false; // Retry next time
-									} else {
-										if (!!!result?.success) {
-											console.error('ONNX Sync Failed', result);
-										}
-										clearInterval(checkSession); // Stop checking
-									}
-								}).catch(err => {
-									console.error('ONNX Sync Error:', err);
-									clearInterval(checkSession);
-								});
-							}, 2000);
-
-							// Stop checking after 60 seconds (increased from 30s to allow for model load)
-							setTimeout(() => clearInterval(checkSession), 60000);
-						} else {
-							console.error('ONNX Sync: wc_cptbot_update_onnx_data function not found');
-						}
-					});
-				</script>
-				<?php
-			}
-		}
-
-		/**
-		 * Generates a product description using ChatGpt.
-		 */
-		public function wc_cptbot_generate_product_description()
-		{
-			if (!empty($_POST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajaxnonce')) {
-
-				$post = !empty($_POST) ? wcaichatbot_clean($_POST) : '';
-				$product_id = isset($post['product_id']) ? (int) $post['product_id'] : 0;
-				$chat_data = '';
-				if (0 !== $product_id) {
-					$wc_cpt_chatgpt_msg = array();
-					$title = get_the_title($product_id);
-					if ('auto-draft' !== strtolower($title)) {
-						$context = $title;
-						if (function_exists('wc_get_product')) {
-							$product = wc_get_product($product_id);
-							if ($product) {
-								$context = wp_json_encode($this->helper->wc_cptbot_get_product_data_for_description($product));
-							}
-						}
-						$prompt = esc_html__('Write a decent description in provided context Tone: Friendly. , Current context: ', 'autonomous-ai-chatbot') . $context;
-
-						$wc_cpt_chatgpt_msg[] = array(
-							'role' => 'user',
-							'content' => wp_json_encode($prompt),
-						);
-						$wk_ai_data_request = array(
-							'model' => get_option('wc_cptbot_model_name', 'gpt-3.5-turbo'),
-							'messages' => $wc_cpt_chatgpt_msg,
-							'temperature' => floatval(1),
-							'max_tokens' => intval($post['length']),
-							'top_p' => floatval(0.01),
-						);
-						$chat_data = $this->openai->chat($wk_ai_data_request);
-					} else {
-						$chat_data = esc_html__('Enter Product Name First', 'autonomous-ai-chatbot');
-					}
-				}
-
-				// Send JSON response with the generated description.
-				wp_send_json_success(esc_html($chat_data));
-			}
 		}
 
 		/**
@@ -1742,31 +1151,11 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 					return;
 				}
 
-				$args = array(
-					'post_type' => 'product',
-					'posts_per_page' => 5,
-					'meta_key' => 'wc_cptbot_search_product_count', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					'orderby' => 'meta_value_num',
-					'order' => 'DESC',
-					'suppress_filters' => false,
-				);
-
-				$product_name = array();
-				$search_count = array();
-				$products = get_posts($args);
-
-				// Extract product names and search counts.
-				foreach ($products as $key => $product) {
-					$search_count[] = intval(get_post_meta($product->ID, 'wc_cptbot_search_product_count', true));
-					$product_name[] = $product->post_title;
-				}
-
-				// Send JSON response with the product names and search counts.
 				wp_send_json(
 					array(
-						'is_pro' => true,
-						'label' => $product_name,
-						'series' => $search_count,
+						'is_pro' => false,
+						'label' => array(),
+						'series' => array(),
 					)
 				);
 			}
@@ -1967,101 +1356,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 		}
 
 		/**
-		 * Reschedules an action and performs product training.
-		 */
-		public function wc_cptbot_reschedule_action()
-		{
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				wp_send_json(
-					array(
-						'code' => 403,
-						'status' => false,
-						'is_pro' => false,
-						'message' => esc_html__('Rescheduling product training requires the WooCommerce PRO addon.', 'autonomous-ai-chatbot'),
-					)
-				);
-				return;
-			}
-
-			// Verify the nonce for security.
-			if (!empty($_POST['nonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ajaxnonce')) {
-				$post = !empty($_POST) ? wcaichatbot_clean($_POST) : array();
-
-				$action_id = !empty($post['action_id']) ? intval($post['action_id']) : 0;
-
-				// Proceed if a valid action ID is provided.
-				if (0 !== $action_id) {
-					$products = $this->helper->wc_cptbot_get_product_ids($action_id);
-					$product_ids = !empty($products) ? maybe_unserialize($products) : '';
-
-					// Proceed if product IDs are available.
-					if (!empty($product_ids)) {
-						$fail = false;
-						foreach ($product_ids as $value) {
-							$product_data = get_post_meta((int) $value['ID'], 'cptbot_product_data', true);
-
-							// Check if product data is empty.
-							if (empty($product_data)) {
-								$product_id = (int) $value['ID'];
-								$product = wc_get_product($product_id);
-								$product_data_arr = $this->helper->wc_cptbot_get_product_data_for_training($product);
-								$product_meta_data_arr = $this->helper->wc_cptbot_get_product_data_for_bot($product);
-
-								// Add trained_db flag to metadata to track which database this was trained on
-								$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-								$product_meta_data_arr['trained_db'] = $vector_db;
-
-								$model_type = get_option('cpt_bot_model_type', 'onnx');
-								if ('gemini' === $model_type) {
-									if (!class_exists('WCAICHATBOT\Helper\Wc_Cptbot_Gemini')) {
-										include_once WC_CPTBOT_PLUGIN_DIR . 'helper/class-wc-cptbot-gemini.php';
-									}
-									$gemini_helper = new helper\Wc_Cptbot_Gemini();
-									$result = $gemini_helper->wc_cptbot_create_embedding(wp_json_encode($product_data_arr));
-								} elseif ('onnx' === $model_type) {
-									$result = $this->openai->wc_cptbot_create_embedding(wp_json_encode($product_data_arr), 384);
-								} else {
-									$result = $this->openai->wc_cptbot_create_embedding(wp_json_encode($product_data_arr), 384);
-								}
-								// Save embeddings data.
-								$vector_data = !empty($result['data']) ? $result['data'][0]['embedding'] : array();
-								$train_resp = $this->pinecone->upsert($vector_data, 'product', $product->get_id(), $product_meta_data_arr, false);
-
-								if ($train_resp) {
-									$cptbot_data = array(
-										'content' => wp_json_encode($product_meta_data_arr),
-										'token' => isset($result['usage']['total_tokens']) ? $result['usage']['total_tokens'] : 0,
-										'type' => 'products',
-										'estimated' => isset($result['usage']['total_tokens']) ? ($result['usage']['total_tokens'] / 1000) * 0.0004 : 0,
-									);
-
-									$serialized_serialized_data = maybe_serialize($cptbot_data);
-									update_post_meta($product->get_id(), 'cptbot_product_data', $serialized_serialized_data);
-
-									$trained_count = get_option('wc_cptbot_scheduler_trained_count');
-									if (empty($trained_count)) {
-										$trained_count = 0;
-									}
-									$count = (int) $trained_count + 1;
-									update_option('wc_cptbot_scheduler_trained_count', $count);
-								} else {
-									$fail = true;
-									update_post_meta($product->get_id(), 'cptbot_product_data', false);
-								}
-							}
-						}
-						if ($fail) {
-							$this->helper->wc_cptbot_update_action_scheduler_status($action_id, 0, false);
-						} else {
-							$this->helper->wc_cptbot_update_action_scheduler_status($action_id, 1, false);
-						}
-						wp_send_json_success(true);
-					}
-				}
-			}
-		}
-
-		/**
 		 * Create custom data using OpenAI language model based on user input.
 		 */
 		public function wc_cptbot_create_custom_data()
@@ -2213,13 +1507,14 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 				$post_excerpt = !empty($data['excerpt']) ? $data['excerpt'] : '';
 				$posttype = !empty($post['posttype']) ? $post['posttype'] : 'post';
 
-				// Ensure WooCommerce Product creation requires the PRO addon.
-				if ('product' === $posttype && (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active())) {
+				// Ensure post type creation is permitted (PRO addon can hook additional post types).
+				$allowed_post_types = apply_filters('wcaichatbot_content_post_types', array('post', 'page'));
+				if (!in_array($posttype, $allowed_post_types, true)) {
 					wp_send_json(
 						array(
 							'status' => 'error',
 							'is_pro' => false,
-							'message' => esc_html__('Creating WooCommerce Products requires the Autonomous AI Chatbot Pro addon.', 'autonomous-ai-chatbot'),
+							'message' => esc_html__('Creating this post type requires the Autonomous AI Chatbot Pro addon.', 'autonomous-ai-chatbot'),
 						)
 					);
 					return;
@@ -2294,297 +1589,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 		}
 
 
-
-		/**
-		 * Get product data.
-		 *
-		 * @return void
-		 */
-		public function wc_cptbot_get_product_data()
-		{
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				wp_send_json(
-					array(
-						'success' => false,
-						'is_pro' => false,
-						'message' => esc_html__('Product data extraction requires the WooCommerce PRO addon.', 'autonomous-ai-chatbot'),
-					)
-				);
-				return;
-			}
-			$response = array(
-				'success' => false,
-				'message' => esc_html__('Something went wrong, please try again.', 'autonomous-ai-chatbot'),
-			);
-
-			if (check_ajax_referer('ajaxnonce', 'nonce', false)) {
-				$post = !empty($_POST) ? wcaichatbot_clean($_POST) : array();
-				$type = !empty($post['type']) ? $post['type'] : '';
-				$data = array();
-
-				switch ($type) {
-					case 'single':
-						$action_id = !empty($post['action_id']) ? intval($post['action_id']) : 0;
-						if (0 !== $action_id) {
-							$product_ids = $this->helper->wc_cptbot_get_product_ids($action_id);
-							$product_ids = !empty($product_ids) ? maybe_unserialize($product_ids) : array();
-							$product_id = !empty($product_ids) ? (int) $product_ids[0]['ID'] : 0;
-							$product = wc_get_product($product_id);
-							$pro_data = $this->helper->wc_cptbot_get_product_data_for_training($product);
-							$data[$product_id] = !empty($pro_data) ? maybe_unserialize($pro_data) : array();
-						}
-						break;
-
-					case 'all':
-						$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-
-						if ('chromadb' === $vector_db) {
-							// For ChromaDB, check if base URL and collection are configured
-							$chroma_base = get_option('wc_cptbot_chroma_base_url');
-							$chroma_col = get_option('wc_cptbot_chroma_collection');
-							$can_proceed = !empty($chroma_base) && !empty($chroma_col);
-						} else {
-							// For Pinecone, check index host and describe_listing
-							$index_host = get_option('wc_cptbot_pinecone_index_host');
-							if (empty($index_host)) {
-								$index_host = get_option('wc_cptbot_pinecone_host');
-							}
-							if (method_exists($this->pinecone, 'describe_listing')) {
-								$listing = $this->pinecone->describe_listing();
-								$can_proceed = !empty($index_host) && 404 !== $listing['code'];
-							} else {
-								// Fallback if method doesn't exist
-								$can_proceed = !empty($index_host);
-							}
-						}
-
-						if ($can_proceed) {
-							$limit = !empty(get_option('wc_cptbot_scheduler_limit')) ? intval(get_option('wc_cptbot_scheduler_limit')) : intval($post['limit']);
-							$offset = !empty(get_option('wc_cptbot_scheduler_offset')) ? intval(get_option('wc_cptbot_scheduler_offset')) : intval($post['offset']);
-
-							// Get all WooCommerce products based on the limit and offset.
-							$products_arr = $this->helper->wc_cptbot_get_all_woo_products($limit, $offset);
-							$products = !empty($products_arr['products']) ? $products_arr['products'] : array();
-
-							if (!empty($products)) {
-								foreach ($products as $product) {
-									$product_id = is_array($product) ? $product['ID'] : $product->ID;
-									$product = wc_get_product($product_id);
-									$pro_data = $this->helper->wc_cptbot_get_product_data_for_training($product);
-									$data[$product_id] = !empty($pro_data) ? maybe_unserialize($pro_data) : array();
-								}
-							}
-						}
-						break;
-					default:
-						break;
-				}
-
-				if (!empty($data)) {
-					$response['success'] = true;
-					$response['data'] = $data;
-					$response['message'] = esc_html__('Product found successfully!', 'autonomous-ai-chatbot');
-				} else {
-					// Check if training is complete (for cases when data is empty)
-					$trained_count = empty(get_option('wc_cptbot_scheduler_trained_count')) ? 0 : intval(get_option('wc_cptbot_scheduler_trained_count'));
-					$total_products_result = $this->helper->wc_cptbot_get_all_woo_products_count();
-					$total_count = !empty($total_products_result['total_count'][0]['count']) ? intval($total_products_result['total_count'][0]['count']) : 0;
-
-					if ($trained_count > 0 && $trained_count === $total_count) {
-						$response['success'] = true;
-						$response['data'] = array();
-						$response['message'] = esc_html__('Training Complete', 'autonomous-ai-chatbot');
-						$response['complete'] = true;
-						$response['products_trained'] = $trained_count;
-						$response['total_count'] = $total_count;
-					} else {
-						$response['success'] = false;
-						$response['message'] = esc_html__('Product is not found!', 'autonomous-ai-chatbot');
-					}
-				}
-			} else {
-				$response['message'] = esc_html__('Nonce verification failed!', 'autonomous-ai-chatbot');
-			}
-
-			wp_send_json($response);
-		}
-
-		/**
-		 * Upsert embedding data in pinecone.
-		 *
-		 * @return void
-		 */
-		public function wc_cptbot_upsert_data_in_pinecone()
-		{
-			if (!function_exists('wcaichatbot_is_pro_active') || !wcaichatbot_is_pro_active()) {
-				wp_send_json(
-					array(
-						'success' => false,
-						'is_pro' => false,
-						'message' => esc_html__('Product vector upsert requires the WooCommerce PRO addon.', 'autonomous-ai-chatbot'),
-					)
-				);
-				return;
-			}
-			$response = array(
-				'success' => false,
-				'message' => esc_html__('Something went wrong, please try again.', 'autonomous-ai-chatbot'),
-			);
-
-			if (check_ajax_referer('ajaxnonce', 'nonce', false)) {
-
-				$post_data = !empty($_POST) ? wcaichatbot_clean($_POST) : array();
-				$product_id = !empty($post_data['product_id']) ? intval($post_data['product_id']) : 0;
-				$action_id = !empty($post_data['action_id']) ? intval($post_data['action_id']) : 0;
-				$embedding_data = !empty($post_data['embedding']) ? json_decode(stripslashes($post_data['embedding']), true) : array();
-				// Force upsert flag: allows client to overwrite existing vectors even if product marked trained
-				$force = !empty($post_data['force']) ? true : false;
-				$data = !empty($post_data['data']) ? $post_data['data'] : false;
-
-				// Extract update flag from data parameter
-				$update = false;
-				if ($data) {
-					// If data is a JSON string, decode it
-					if (is_string($data)) {
-						$data_decoded = json_decode(stripslashes($data), true);
-						if (is_array($data_decoded) && isset($data_decoded['update'])) {
-							$update = (bool) $data_decoded['update'];
-						}
-					} elseif (is_array($data) && isset($data['update'])) {
-						$update = (bool) $data['update'];
-					}
-				}
-
-				if (is_array($embedding_data)) {
-					$embedding_data = array_map('floatval', $embedding_data);
-				} else {
-					$embedding_data = array();
-				}
-
-				$is_trained = get_post_meta($product_id, 'cptbot_product_data', true);
-
-				// Check each condition separately for better debugging
-				$has_embedding = !empty($embedding_data);
-				$has_product_id = !empty($product_id);
-				$not_trained = empty($is_trained);
-
-				// Allow upsert when either the product is not trained OR client explicitly requests force upsert
-				if ($has_embedding && $has_product_id && ($not_trained || $force)) {
-
-					$product = wc_get_product($product_id);
-					if (!$product) {
-						$response['message'] = 'Product not found';
-						wp_send_json($response);
-						return;
-					}
-
-					$product_meta_data_arr = $this->helper->wc_cptbot_get_product_data_for_bot($product);
-
-					// Add trained_db flag to metadata to track which database this was trained on
-					$vector_db = get_option('wc_cptbot_vector_db', 'pinecone');
-					$product_meta_data_arr['trained_db'] = $vector_db;
-
-					// ENHANCED: Enrich metadata with category IDs and tags for better filtering
-					// Check which vector DB is being used and enhance metadata accordingly
-					if ('chromadb' === $vector_db) {
-						$product_meta_data_arr = $this->pinecone->enhance_metadata_with_categories_and_tags($product_meta_data_arr, $product_id);
-					} else {
-						// For Pinecone, we can still enhance the metadata with category info
-						$categories_term = get_the_terms($product_id, 'product_cat');
-						$category_ids = array();
-						$category_names = array();
-						if (!empty($categories_term) && !is_wp_error($categories_term)) {
-							foreach ($categories_term as $term) {
-								$category_ids[] = (int) $term->term_id;
-								$category_names[] = $term->name;
-							}
-						}
-						if (!empty($category_ids)) {
-							$product_meta_data_arr['category_ids'] = wp_json_encode($category_ids);
-							$product_meta_data_arr['category_names'] = implode('|', $category_names);
-						}
-
-						// Add tags
-						$tags_term = get_the_terms($product_id, 'product_tag');
-						if (!empty($tags_term) && !is_wp_error($tags_term)) {
-							$product_tags = array();
-							foreach ($tags_term as $term) {
-								$product_tags[] = $term->name;
-							}
-							$product_meta_data_arr['product_tags'] = implode('|', $product_tags);
-						}
-					}
-
-					$train_resp = $this->pinecone->upsert($embedding_data, 'product', $product_id, $product_meta_data_arr, $force);
-
-					if (!empty($train_resp)) {
-
-						$cptbot_data = array(
-							'content' => wp_json_encode($product_meta_data_arr),
-							'type' => 'products',
-						);
-
-						$serialized_serialized_data = maybe_serialize($cptbot_data);
-						update_post_meta($product_id, 'cptbot_product_data', $serialized_serialized_data);
-
-						$trained_count = get_option('wc_cptbot_scheduler_trained_count');
-						if (empty($trained_count)) {
-							$trained_count = 0;
-
-						}
-
-						if (!$update) {
-							$count = (int) $trained_count + 1;
-							update_option('wc_cptbot_scheduler_trained_count', $count);
-						}
-
-						$offset = get_option('wc_cptbot_scheduler_offset');
-						$new_offset = (int) $offset + 1;
-						update_option('wc_cptbot_scheduler_offset', $new_offset);
-
-						if (!empty($action_id)) {
-							$this->helper->wc_cptbot_update_action_scheduler_status($action_id, 1, false);
-						} else {
-							$status_arr = array('status' => 'success');
-							$product_arr = array(array('ID' => $product_id));
-							$action_id = $this->helper->wc_cptbot_save_scheduled_actions($product_arr, $status_arr);
-						}
-
-						$response['success'] = true;
-						$response['code'] = 200;
-						$response['products_trained'] = empty(get_option('wc_cptbot_scheduler_trained_count')) ? 0 : get_option('wc_cptbot_scheduler_trained_count');
-						$response['message'] = esc_html__('Product Trained Sucessfully', 'autonomous-ai-chatbot');
-					} else {
-						$response['message'] = 'Upsert operation returned empty response';
-						$this->helper->wc_cptbot_update_action_scheduler_status($action_id, 0, false);
-
-						// Log failure as well if no action ID exists
-						if (empty($action_id)) {
-							$status_arr = array('status' => 'fail');
-							$product_arr = array(array('ID' => $product_id));
-							$action_id = $this->helper->wc_cptbot_save_scheduled_actions($product_arr, $status_arr);
-						}
-
-						update_post_meta($product_id, 'cptbot_product_data', false);
-					}
-				} else {
-					if (!$has_embedding) {
-						$response['message'] = 'Embedding data is empty';
-					}
-					if (!$has_product_id) {
-						$response['message'] = 'Invalid product ID';
-					}
-					if (!$not_trained) {
-						$response['message'] = 'Product already trained';
-					}
-				}
-			} else {
-
-				$response['message'] = esc_html__('Nonce verification failed!', 'autonomous-ai-chatbot');
-			}
-
-			wp_send_json($response);
-		}
 
 		/**
 		 * Log JS data to PHP error log.
@@ -3360,182 +2364,6 @@ if (!class_exists('Wc_Cptbot_Front_Functions')) {
 			})(jQuery);
 			</script>
 			<?php
-		}
-
-		/**
-		 * Display Webkul plugin advertisements for cross-selling and marketing.
-		 *
-		 * @param string $page_id Current page or tab ID.
-		 * @return void
-		 */
-		public function wc_cptbot_display_plugin_adds( $page_id = '' ) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
-			if ( empty( $tab ) ) {
-				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$tab = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			}
-			$tab = ! empty( $tab ) ? sanitize_text_field( wp_unslash( $tab ) ) : 'chatgpt-bot';
-
-			if ( empty( $page_id ) ) {
-				$screen    = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-				$screen_id = $screen ? $screen->id : 'toplevel_page_chatgpt-bot';
-				$page_id   = $screen_id . ( ! empty( $tab ) ? '-' . $tab : '' );
-			}
-			$page_id = apply_filters( 'wcaichatbot_modify_plugin_adds_page_id', $page_id );
-
-			$webkul_plugins = array();
-			$active_plugins = get_option( 'active_plugins', array() );
-			$plugin_notices = get_option( 'wcaichatbot_plugin_notices' );
-
-			if ( ! function_exists( 'get_plugin_data' ) && file_exists( ABSPATH . 'wp-admin/includes/plugin.php' ) ) {
-				require_once ABSPATH . 'wp-admin/includes/plugin.php';
-			}
-
-			if ( function_exists( 'get_plugin_data' ) && is_array( $active_plugins ) ) {
-				foreach ( $active_plugins as $plugin ) {
-					$file_path = WP_PLUGIN_DIR . '/' . $plugin;
-					if ( file_exists( $file_path ) ) {
-						$plugin_data = get_plugin_data( $file_path );
-						if ( ! empty( $plugin_data['AuthorName'] ) && 'webkul' === strtolower( $plugin_data['AuthorName'] ) ) {
-							$webkul_plugins[] = array(
-								'name'    => $plugin_data['Name'],
-								'version' => isset( $plugin_data['Version'] ) ? $plugin_data['Version'] : ( isset( $plugin_data['version'] ) ? $plugin_data['version'] : '1.0.0' ),
-							);
-						}
-					}
-				}
-			}
-
-			$last_date    = new \DateTime( ! empty( $plugin_notices['last_date'] ) ? $plugin_notices['last_date'] : wp_date( 'Y-m-d H:i:s' ) );
-			$current_date = new \DateTime( wp_date( 'Y-m-d H:i:s' ) );
-
-			if ( empty( $plugin_notices ) || empty( $plugin_notices['plugin_notices'] ) || $last_date->diff( $current_date )->days >= 1 ) {
-				$url = apply_filters( 'wcaichatbot_marketing_notices_url', 'https://wpdemo.webkul.com/wk-extensions/pos-notices.php' );
-
-				$args = array(
-					'headers' => array(
-						'Accept'       => 'application/json',
-						'Content-Type' => 'application/json',
-					),
-					'timeout' => 2,
-				);
-
-				$response = wp_remote_get( $url, $args );
-
-				if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
-					$notices = wp_remote_retrieve_body( $response );
-
-					if ( ! empty( $notices ) ) {
-						$decode_notices = json_decode( $notices );
-
-						if ( ! empty( $decode_notices ) && is_array( $decode_notices ) ) {
-							$plugin_notices = array(
-								'last_date'      => current_time( 'mysql' ),
-								'plugin_notices' => $decode_notices,
-							);
-
-							update_option( 'wcaichatbot_plugin_notices', $plugin_notices, true );
-						}
-					}
-				}
-			}
-
-			$plugin_names = ! empty( $webkul_plugins ) ? array_column( $webkul_plugins, 'name' ) : array();
-
-			// Tab mapping for POS notices feed to display relevant Webkul modules across chatbot tabs
-			$tab_map = apply_filters(
-				'wcaichatbot_tab_notice_mapping',
-				array(
-					'chatgpt-bot'   => 'point-of-sale_page_pos-outlets',
-					'history'       => 'point-of-sale_page_pos-orders',
-					'content'       => 'point-of-sale_page_pos-products',
-					'training'      => 'point-of-sale_page_wc-pos-settings-payment-option',
-					'configuration' => 'point-of-sale_page_wc-pos-settings-printer-settings',
-				)
-			);
-
-			$active_tab_key  = ( ! empty( $page_id ) && isset( $tab_map[ $page_id ] ) ) ? $page_id : $tab;
-			$mapped_pos_page = isset( $tab_map[ $active_tab_key ] ) ? $tab_map[ $active_tab_key ] : '';
-
-			if ( ! empty( $plugin_notices['plugin_notices'] ) && is_array( $plugin_notices['plugin_notices'] ) ) {
-				foreach ( $plugin_notices['plugin_notices'] as $notice ) {
-					$version          = ! empty( $notice->version ) ? $notice->version : '';
-					$plugin_check     = ! empty( $notice->plugin_check ) ? $notice->plugin_check : 'not-installed';
-					$plugin_installed = ! empty( $notice->plugin ) && in_array( $notice->plugin, $plugin_names, true ) ? 'installed' : 'not-installed';
-
-					if ( 'installed' === $plugin_installed ) {
-						$plugin_index   = array_search( $notice->plugin, $plugin_names, true );
-						$plugin_version = $webkul_plugins[ $plugin_index ]['version'];
-						if ( $version && version_compare( $version, $plugin_version ) !== 1 ) {
-							continue;
-						}
-					}
-
-					$is_page_match = false;
-					if ( ! empty( $notice->pages ) ) {
-						if ( 'all' === $notice->pages ) {
-							$is_page_match = true;
-						} elseif ( is_array( $notice->pages ) ) {
-							if ( in_array( $page_id, $notice->pages, true ) || in_array( $active_tab_key, $notice->pages, true ) ) {
-								$is_page_match = true;
-							} elseif ( ! empty( $mapped_pos_page ) && in_array( $mapped_pos_page, $notice->pages, true ) ) {
-								$is_page_match = true;
-							}
-						}
-					}
-
-					if ( $is_page_match && $plugin_installed === $plugin_check ) {
-						?>
-						<div class="wc-cptbot-plugin-adds-wrap wkwcpos-plugin-adds-wrap notice notice-inline inline notice-<?php echo ! empty( $notice->type ) ? esc_attr( $notice->type ) : 'success'; ?> is-dismissible">
-							<?php if ( ! empty( $notice->badge ) ) : ?>
-								<span class="wc-cptbot-plugin-recommend-badge wkwcpos-plugin-recommend-badge"><?php echo esc_html( $notice->badge ); ?></span>
-							<?php endif; ?>
-							<?php if ( ! empty( $notice->logo ) ) : ?>
-								<div class="wc-cptbot-plugin-logo wkwcpos-plugin-logo">
-									<img src="<?php echo esc_url( $notice->logo ); ?>" alt="<?php echo esc_attr( ! empty( $notice->title ) ? $notice->title : '' ); ?>"/>
-								</div>
-							<?php endif; ?>
-							<div class="wc-cptbot-plugin-content wkwcpos-plugin-content">
-								<?php if ( ! empty( $notice->title ) ) : ?>
-									<span class="wc-cptbot-plugin-title wkwcpos-plugin-title"><?php echo esc_html( $notice->title ); ?></span>
-								<?php endif; ?>
-								<?php if ( ! empty( $notice->description ) ) : ?>
-									<p class="wc-cptbot-plugin-description wkwcpos-plugin-description"><?php echo wp_kses_post( $notice->description ); ?></p>
-								<?php endif; ?>
-								<?php if ( ! empty( $notice->links ) && is_array( $notice->links ) ) : ?>
-									<div class="wc-cptbot-plugin-links wkwcpos-plugin-links">
-										<?php foreach ( $notice->links as $link ) : ?>
-											<?php if ( ! empty( $link->link ) && ! empty( $link->label ) ) : ?>
-												<a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url( $link->link ); ?>" class="button button-primary"><?php echo esc_html( $link->label ); ?></a>
-											<?php endif; ?>
-										<?php endforeach; ?>
-									</div>
-								<?php endif; ?>
-							</div>
-						</div>
-						<?php
-						break;
-					}
-				}
-			}
-		}
-
-		/**
-		 * Admin notices compatibility wrapper.
-		 *
-		 * @return void
-		 */
-		public function wc_cptbot_add_plugin_notices_compatibility() {
-			$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			if ( ! empty( $page ) && 'chatgpt-bot' === $page ) {
-				$tab       = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-				$screen    = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
-				$screen_id = $screen ? $screen->id : 'toplevel_page_chatgpt-bot';
-				$page_id   = $screen_id . ( ! empty( $tab ) ? '-' . $tab : '' );
-				$page_id   = apply_filters( 'wcaichatbot_modify_plugin_adds_page_id', $page_id, $screen );
-				$this->wc_cptbot_display_plugin_adds( $page_id );
-			}
 		}
 	}
 }

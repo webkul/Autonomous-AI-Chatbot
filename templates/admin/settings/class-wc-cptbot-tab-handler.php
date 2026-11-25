@@ -35,8 +35,10 @@ if ( ! class_exists( 'Wc_Cptbot_Tab_Handler' ) ) {
 						'chatgpt-bot'   => esc_html__( 'Dashboard', 'autonomous-ai-chatbot' ),
 						'history'       => esc_html__( 'Conversation History', 'autonomous-ai-chatbot' ),
 						'content'       => esc_html__( 'Content Creation', 'autonomous-ai-chatbot' ),
-						'training'      => esc_html__( 'Data Training', 'autonomous-ai-chatbot' ),
-						'configuration' => esc_html__( 'Settings', 'autonomous-ai-chatbot' ),
+						'training'             => esc_html__( 'Data Training', 'autonomous-ai-chatbot' ),
+						'configuration'        => esc_html__( 'Settings', 'autonomous-ai-chatbot' ),
+						'extensions'           => esc_html__( 'Extensions', 'autonomous-ai-chatbot' ),
+						'support-and-services' => esc_html__( 'Support & Services', 'autonomous-ai-chatbot' ),
 
 					)
 				);
@@ -68,7 +70,6 @@ if ( ! class_exists( 'Wc_Cptbot_Tab_Handler' ) ) {
 
 				// Render tab content wrapper
 				echo '<div class="wc-cptbot-admin-content-wrapper">';
-				do_action( 'wcaichatbot_display_plugin_adds', $current_tab );
 				do_action( 'wcaichatbot_cptbot_chatgpt_bot_' . $current_tab, $this );
 				echo '</div>';
 

@@ -252,6 +252,16 @@
         content: "\f111";
         /* dashicons-admin-generic */
     }
+
+    &[href*="tab=extensions"]::before {
+        content: "\f106";
+        /* dashicons-admin-plugins */
+    }
+
+    &[href*="tab=support-and-services"]::before {
+        content: "\f110";
+        /* dashicons-admin-users */
+    }
 }
 
 #dashboard_right_now.pos li span {

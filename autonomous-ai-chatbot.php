@@ -12,8 +12,6 @@
  * Requires at least:    6.5
  * Requires PHP:         7.4
  *
- * Blog URI:             https://webkul.com/blog/woocommerce-chatgpt-chatbot-documentation/
- *
  * @package Autonomous AI Chatbot
  */
 

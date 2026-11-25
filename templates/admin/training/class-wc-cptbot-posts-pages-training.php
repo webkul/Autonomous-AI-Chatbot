@@ -186,58 +186,58 @@ if ( ! class_exists( 'WCAICHATBOT\Templates\Admin\Training\Wc_Cptbot_Posts_Pages
 	}
 }
 
-$cptbot_helper = new Wc_Cptbot_Helper();
-$cptbot_counts = $cptbot_helper->wc_cptbot_get_posts_pages_count();
+$wcaichatbot_helper = new Wc_Cptbot_Helper();
+$wcaichatbot_counts = $wcaichatbot_helper->wc_cptbot_get_posts_pages_count();
 
-$cptbot_model_type  = get_option( 'cpt_bot_model_type', 'onnx' );
-$cptbot_model_label = '';
-switch ( $cptbot_model_type ) {
+$wcaichatbot_model_type  = get_option( 'cpt_bot_model_type', 'onnx' );
+$wcaichatbot_model_label = '';
+switch ( $wcaichatbot_model_type ) {
 	case 'onnx':
-		$cptbot_model_label = esc_html__( 'E₅ Small ONNX Model', 'autonomous-ai-chatbot' );
+		$wcaichatbot_model_label = esc_html__( 'E₅ Small ONNX Model', 'autonomous-ai-chatbot' );
 		break;
 	case 'gemini':
-		$cptbot_model_label = esc_html__( 'Gemini Embedding Model', 'autonomous-ai-chatbot' );
+		$wcaichatbot_model_label = esc_html__( 'Gemini Embedding Model', 'autonomous-ai-chatbot' );
 		break;
 	case 'openai':
-		$cptbot_model_label = esc_html__( 'OpenAI Embedding Model', 'autonomous-ai-chatbot' );
+		$wcaichatbot_model_label = esc_html__( 'OpenAI Embedding Model', 'autonomous-ai-chatbot' );
 		break;
 	default:
-		$cptbot_model_label = ucfirst( $cptbot_model_type );
+		$wcaichatbot_model_label = ucfirst( $wcaichatbot_model_type );
 }
 
-$cptbot_vector_db = get_option( 'wc_cptbot_vector_db', 'pinecone' );
-$cptbot_db_configured = false;
-$cptbot_db_info_label = '';
+$wcaichatbot_vector_db = get_option( 'wc_cptbot_vector_db', 'pinecone' );
+$wcaichatbot_db_configured = false;
+$wcaichatbot_db_info_label = '';
 
-if ( 'chromadb' === $cptbot_vector_db ) {
-	$cptbot_chroma_base = get_option( 'wc_cptbot_chroma_base_url' );
-	$cptbot_chroma_col  = get_option( 'wc_cptbot_chroma_collection' );
-	if ( ! empty( $cptbot_chroma_base ) && ! empty( $cptbot_chroma_col ) ) {
-		$cptbot_db_configured = true;
-		$cptbot_db_info_label = 'ChromaDB (' . esc_html( $cptbot_chroma_col ) . ')';
+if ( 'chromadb' === $wcaichatbot_vector_db ) {
+	$wcaichatbot_chroma_base = get_option( 'wc_cptbot_chroma_base_url' );
+	$wcaichatbot_chroma_col  = get_option( 'wc_cptbot_chroma_collection' );
+	if ( ! empty( $wcaichatbot_chroma_base ) && ! empty( $wcaichatbot_chroma_col ) ) {
+		$wcaichatbot_db_configured = true;
+		$wcaichatbot_db_info_label = 'ChromaDB (' . esc_html( $wcaichatbot_chroma_col ) . ')';
 	} else {
-		$cptbot_db_info_label = esc_html__( 'ChromaDB (Not Configured)', 'autonomous-ai-chatbot' );
+		$wcaichatbot_db_info_label = esc_html__( 'ChromaDB (Not Configured)', 'autonomous-ai-chatbot' );
 	}
 } else {
-	$cptbot_pinecone_key  = get_option( 'wc_cptbot_pinecone_key' );
-	$cptbot_pinecone_host = get_option( 'wc_cptbot_pinecone_index_host' );
-	if ( empty( $cptbot_pinecone_host ) ) {
-		$cptbot_pinecone_host = get_option( 'wc_cptbot_pinecone_host' );
+	$wcaichatbot_pinecone_key  = get_option( 'wc_cptbot_pinecone_key' );
+	$wcaichatbot_pinecone_host = get_option( 'wc_cptbot_pinecone_index_host' );
+	if ( empty( $wcaichatbot_pinecone_host ) ) {
+		$wcaichatbot_pinecone_host = get_option( 'wc_cptbot_pinecone_host' );
 	}
-	if ( ! empty( $cptbot_pinecone_key ) && ! empty( $cptbot_pinecone_host ) ) {
-		$cptbot_index_name_label = get_option( 'wc_cptbot_pinecone_indexname' );
-		if ( empty( $cptbot_index_name_label ) ) {
-			$cptbot_index_name_label = get_option( 'wc_cptbot_pinecone_index_name', 'default' );
+	if ( ! empty( $wcaichatbot_pinecone_key ) && ! empty( $wcaichatbot_pinecone_host ) ) {
+		$wcaichatbot_index_name_label = get_option( 'wc_cptbot_pinecone_indexname' );
+		if ( empty( $wcaichatbot_index_name_label ) ) {
+			$wcaichatbot_index_name_label = get_option( 'wc_cptbot_pinecone_index_name', 'default' );
 		}
-		$cptbot_db_configured = true;
-		$cptbot_db_info_label = 'Pinecone (' . esc_html( $cptbot_index_name_label ) . ')';
+		$wcaichatbot_db_configured = true;
+		$wcaichatbot_db_info_label = 'Pinecone (' . esc_html( $wcaichatbot_index_name_label ) . ')';
 	} else {
-		$cptbot_db_info_label = esc_html__( 'Pinecone (Not Configured)', 'autonomous-ai-chatbot' );
+		$wcaichatbot_db_info_label = esc_html__( 'Pinecone (Not Configured)', 'autonomous-ai-chatbot' );
 	}
 }
 
-$cptbot_table = new Wc_Cptbot_Posts_Pages_Training_Table();
-$cptbot_table->prepare_items();
+$wcaichatbot_table = new Wc_Cptbot_Posts_Pages_Training_Table();
+$wcaichatbot_table->prepare_items();
 ?>
 
 <div class="wc-pos-wrapper cptbot-training-page-wrapper" style="margin-top: 15px;">
@@ -248,12 +248,12 @@ $cptbot_table->prepare_items();
 			<div class="cptbot-training-stat-card">
 				<span class="cptbot-stat-title"><?php esc_html_e( 'Total Posts and Pages', 'autonomous-ai-chatbot' ); ?></span>
 				<div class="cptbot-stat-val">
-					<?php echo esc_html( $cptbot_counts['total'] ); ?>
+					<?php echo esc_html( $wcaichatbot_counts['total'] ); ?>
 				</div>
 				<span class="cptbot-stat-sub">
 					<?php
 					/* translators: 1: number of posts, 2: number of pages */
-					printf( esc_html__( 'Posts: %1$d | Pages: %2$d', 'autonomous-ai-chatbot' ), (int) $cptbot_counts['posts'], (int) $cptbot_counts['pages'] );
+					printf( esc_html__( 'Posts: %1$d | Pages: %2$d', 'autonomous-ai-chatbot' ), (int) $wcaichatbot_counts['posts'], (int) $wcaichatbot_counts['pages'] );
 					?>
 				</span>
 			</div>
@@ -261,12 +261,12 @@ $cptbot_table->prepare_items();
 			<div class="cptbot-training-stat-card">
 				<span class="cptbot-stat-title"><?php esc_html_e( 'Synced to Vector DB', 'autonomous-ai-chatbot' ); ?></span>
 				<div class="cptbot-stat-val cptbot-stat-val-green" id="cptbot-synced-stat">
-					<?php echo esc_html( $cptbot_counts['synced'] ); ?> <span class="cptbot-stat-pct">(<?php echo esc_html( $cptbot_counts['percent'] ); ?>%)</span>
+					<?php echo esc_html( $wcaichatbot_counts['synced'] ); ?> <span class="cptbot-stat-pct">(<?php echo esc_html( $wcaichatbot_counts['percent'] ); ?>%)</span>
 				</div>
 				<span class="cptbot-stat-sub" id="cptbot-unsynced-stat">
 					<?php
 					/* translators: %d: number of pending items */
-					printf( esc_html__( 'Pending: %d items', 'autonomous-ai-chatbot' ), (int) $cptbot_counts['unsynced'] );
+					printf( esc_html__( 'Pending: %d items', 'autonomous-ai-chatbot' ), (int) $wcaichatbot_counts['unsynced'] );
 					?>
 				</span>
 			</div>
@@ -274,7 +274,7 @@ $cptbot_table->prepare_items();
 			<div class="cptbot-training-stat-card">
 				<span class="cptbot-stat-title"><?php esc_html_e( 'Active Embedding Engine', 'autonomous-ai-chatbot' ); ?></span>
 				<div class="cptbot-stat-val cptbot-stat-val-engine">
-					<?php echo esc_html( $cptbot_model_label ); ?>
+					<?php echo esc_html( $wcaichatbot_model_label ); ?>
 				</div>
 				<span class="cptbot-stat-sub">
 					<?php esc_html_e( 'Configured in Settings', 'autonomous-ai-chatbot' ); ?>
@@ -283,11 +283,11 @@ $cptbot_table->prepare_items();
 
 			<div class="cptbot-training-stat-card">
 				<span class="cptbot-stat-title"><?php esc_html_e( 'Vector Database', 'autonomous-ai-chatbot' ); ?></span>
-				<div class="cptbot-stat-val <?php echo $cptbot_db_configured ? 'cptbot-stat-val-green' : 'cptbot-stat-val-red'; ?>">
-					<?php echo $cptbot_db_configured ? '✓ ' : '✗ '; ?><?php echo esc_html( $cptbot_db_info_label ); ?>
+				<div class="cptbot-stat-val <?php echo $wcaichatbot_db_configured ? 'cptbot-stat-val-green' : 'cptbot-stat-val-red'; ?>">
+					<?php echo $wcaichatbot_db_configured ? '✓ ' : '✗ '; ?><?php echo esc_html( $wcaichatbot_db_info_label ); ?>
 				</div>
 				<span class="cptbot-stat-sub">
-					<?php echo $cptbot_db_configured ? esc_html__( 'Ready for synchronization', 'autonomous-ai-chatbot' ) : esc_html__( 'Please configure API keys', 'autonomous-ai-chatbot' ); ?>
+					<?php echo $wcaichatbot_db_configured ? esc_html__( 'Ready for synchronization', 'autonomous-ai-chatbot' ) : esc_html__( 'Please configure API keys', 'autonomous-ai-chatbot' ); ?>
 				</span>
 			</div>
 		</div>
@@ -302,7 +302,7 @@ $cptbot_table->prepare_items();
 					</p>
 				</div>
 				<div class="cptbot-training-sync-actions">
-					<button type="button" class="button button-primary" id="cptbot-sync-posts-pages-btn" <?php echo ! $cptbot_db_configured ? 'disabled' : ''; ?>>
+					<button type="button" class="button button-primary" id="cptbot-sync-posts-pages-btn" <?php echo ! $wcaichatbot_db_configured ? 'disabled' : ''; ?>>
 						<span id="cptbot-posts-btn-text"><?php esc_html_e( 'Synchronize All Posts and Pages', 'autonomous-ai-chatbot' ); ?></span>
 						<span class="cptbot-posts-loader" id="cptbot-posts-btn-spinner" style="display: none; width: 13px; height: 13px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: cptbot-spin 0.8s linear infinite; vertical-align: middle; margin-left: 6px;"></span>
 					</button>
@@ -372,7 +372,7 @@ $cptbot_table->prepare_items();
 				<input type="hidden" name="tab" value="training" />
 				<input type="hidden" name="section" value="posts_pages" />
 				<?php
-				$cptbot_table->display();
+				$wcaichatbot_table->display();
 				?>
 			</form>
 		</div>
@@ -481,8 +481,8 @@ $cptbot_table->prepare_items();
 		var ajaxUrl = '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>';
 		var nonce   = '<?php echo esc_js( wp_create_nonce( 'ajaxnonce' ) ); ?>';
 		var isSyncing = false;
-		var totalCount  = <?php echo (int) $cptbot_counts['total']; ?>;
-		var syncedCount = <?php echo (int) $cptbot_counts['synced']; ?>;
+		var totalCount  = <?php echo (int) $wcaichatbot_counts['total']; ?>;
+		var syncedCount = <?php echo (int) $wcaichatbot_counts['synced']; ?>;
 
 		function updateSyncedStats(newCounts) {
 			if (newCounts && typeof newCounts.synced !== 'undefined') {
@@ -501,9 +501,9 @@ $cptbot_table->prepare_items();
 			$('#cptbot-synced-stat').html(syncedCount + ' <span style="font-size: 16px; font-weight: normal; color: #646970;">(' + pct + '%)</span>');
 			<?php
 			/* translators: %d: number of pending items */
-			$cptbot_pending_text = __( 'Pending: %d items', 'autonomous-ai-chatbot' );
+			$wcaichatbot_pending_text = __( 'Pending: %d items', 'autonomous-ai-chatbot' );
 			?>
-			var pendingTemplate = '<?php echo esc_js( $cptbot_pending_text ); ?>';
+			var pendingTemplate = '<?php echo esc_js( $wcaichatbot_pending_text ); ?>';
 			$('#cptbot-unsynced-stat').text(pendingTemplate.replace('%d', unsynced));
 			if (window.wc_cptbot) {
 				window.wc_cptbot.posts_pages_trained_count = syncedCount;
@@ -581,7 +581,7 @@ $cptbot_table->prepare_items();
 					if (res && res.success) {
 						var data = res.data;
 						if (data && data.needs_onnx) {
-							var curModel = '<?php echo esc_js( $cptbot_model_type ); ?>';
+							var curModel = '<?php echo esc_js( $wcaichatbot_model_type ); ?>';
 							if (curModel === 'onnx') {
 								$btn.text('<?php echo esc_js( __( 'Loading AI…', 'autonomous-ai-chatbot' ) ); ?>');
 								var isReady = await ensureOnnxReady();
@@ -694,7 +694,7 @@ $cptbot_table->prepare_items();
 				$wrapper.slideDown(200);
 			} else {
 				isSyncing = false;
-				$btn.prop('disabled', <?php echo ! $cptbot_db_configured ? 'true' : 'false'; ?>);
+				$btn.prop('disabled', <?php echo ! $wcaichatbot_db_configured ? 'true' : 'false'; ?>);
 				$btnText.text('<?php echo esc_js( __( 'Synchronize All Posts and Pages', 'autonomous-ai-chatbot' ) ); ?>');
 				$btnSpinner.hide();
 				$barSpinner.hide();
@@ -704,11 +704,11 @@ $cptbot_table->prepare_items();
 		async function startBatchSync(isResume, startOffset) {
 			if (isSyncing && !isResume) return;
 
-			var modelType = '<?php echo esc_js( $cptbot_model_type ); ?>';
+			var modelType = '<?php echo esc_js( $wcaichatbot_model_type ); ?>';
 			var limit     = 5;
 			var offset    = typeof startOffset === 'number' ? startOffset : 0;
-			totalCount    = <?php echo (int) $cptbot_counts['total']; ?>;
-			syncedCount   = <?php echo (int) $cptbot_counts['synced']; ?>;
+			totalCount    = <?php echo (int) $wcaichatbot_counts['total']; ?>;
+			syncedCount   = <?php echo (int) $wcaichatbot_counts['synced']; ?>;
 
 			setSyncUIActive(true, '<?php echo esc_js( __( 'Synchronizing…', 'autonomous-ai-chatbot' ) ); ?>');
 			$('#cptbot-posts-sync-msg').hide().removeClass('notice notice-error notice-success');

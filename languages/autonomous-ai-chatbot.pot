@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/autonomous-ai-chatbot\n"
-"POT-Creation-Date: 2026-11-24 11:08:16+00:00\n"
+"https://wordpress.org/support/plugin/Autonomous-AI-Chatbot\n"
+"POT-Creation-Date: 2026-11-25 05:51:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,154 +41,153 @@ msgstr ""
 msgid "No matches found"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:203
-msgid "Price"
-msgstr ""
-
-#: helper/class-wc-cptbot-helper.php:537
-#: includes/admin/class-wc-cptbot-admin-functions.php:1652
-#: includes/admin/class-wc-cptbot-admin-functions.php:1653
-#: includes/admin/class-wc-cptbot-admin-functions.php:1687
-#: includes/admin/class-wc-cptbot-admin-functions.php:1688
+#: helper/class-wc-cptbot-helper.php:104
+#: includes/admin/class-wc-cptbot-admin-functions.php:1061
+#: includes/admin/class-wc-cptbot-admin-functions.php:1062
+#: includes/admin/class-wc-cptbot-admin-functions.php:1096
+#: includes/admin/class-wc-cptbot-admin-functions.php:1097
 msgid "Guest"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:1328
+#: helper/class-wc-cptbot-helper.php:813
 msgid "How many units would you like to add to your cart?"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:1344
+#: helper/class-wc-cptbot-helper.php:829
 msgid "How many units would you like to remove from your cart?"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:1546
+#: helper/class-wc-cptbot-helper.php:1031
 msgid ""
 "You are welcome. I can help you find products, compare options, check "
 "coupons, or continue to checkout."
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:1550
+#: helper/class-wc-cptbot-helper.php:1035
 msgid "Hi! What would you like to shop for today?"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:1553
+#: helper/class-wc-cptbot-helper.php:1038
 msgid ""
 "I can help with products, coupons, shipping, cart updates, or checkout. "
 "What would you like to do next?"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2588
+#: helper/class-wc-cptbot-helper.php:1490
 msgid "Empty chunk received"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2598
+#: helper/class-wc-cptbot-helper.php:1500
 msgid "Duplicate chunk skipped"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2619
+#: helper/class-wc-cptbot-helper.php:1521
 msgid "Modal downloaded successfully"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2624
+#: helper/class-wc-cptbot-helper.php:1526
 msgid "Modal chunk downloaded successfully"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2717
-msgid "vs %d in prev %d days"
+#: helper/class-wc-cptbot-helper.php:1620
+#. translators: 1: previous period count, 2: number of days
+msgid "vs %1$d in prev %2$d days"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2723
+#: helper/class-wc-cptbot-helper.php:1626
 msgid "No activity in either period"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2732
-msgid "from %d in prev %d days"
+#: helper/class-wc-cptbot-helper.php:1636
+#. translators: 1: previous period count, 2: number of days
+msgid "from %1$d in prev %2$d days"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2739
+#: helper/class-wc-cptbot-helper.php:1644
+#. translators: %d: number of active users yesterday
 msgid "No users active today"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2739
+#: helper/class-wc-cptbot-helper.php:1644
 msgid "vs %d yesterday"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2747
+#: helper/class-wc-cptbot-helper.php:1652
 msgid "Total Conversations"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2756
+#: helper/class-wc-cptbot-helper.php:1661
 msgid "Total Messages"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2765
+#: helper/class-wc-cptbot-helper.php:1670
 msgid "Active Users Today"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2774
+#: helper/class-wc-cptbot-helper.php:1679
 msgid "AI Resolution Rate"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2778
+#: helper/class-wc-cptbot-helper.php:1683
 msgid "Queries resolved successfully"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2778
-#: helper/class-wc-cptbot-helper.php:2933
+#: helper/class-wc-cptbot-helper.php:1683
+#: helper/class-wc-cptbot-helper.php:1838
 msgid "Awaiting queries in period"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2783
+#: helper/class-wc-cptbot-helper.php:1688
 msgid "Knowledge Synced"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2787
+#: helper/class-wc-cptbot-helper.php:1693
+#. translators: %d: total number of indexed items
 msgid "%d total items indexed"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2787
-#: helper/class-wc-cptbot-helper.php:2798
-#: helper/class-wc-cptbot-helper.php:2808
-#: helper/class-wc-cptbot-helper.php:2818
-#: helper/class-wc-cptbot-helper.php:2828
-msgid "Available with PRO Addon"
-msgstr ""
-
-#: helper/class-wc-cptbot-helper.php:2794
+#: helper/class-wc-cptbot-helper.php:1699
 msgid "Bot Cart Additions"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2804
+#: helper/class-wc-cptbot-helper.php:1703
+#: helper/class-wc-cptbot-helper.php:1713
+#: helper/class-wc-cptbot-helper.php:1723
+#: helper/class-wc-cptbot-helper.php:1733
+msgid "Available with PRO Addon"
+msgstr ""
+
+#: helper/class-wc-cptbot-helper.php:1709
 msgid "Bot-Driven Revenue"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2814
+#: helper/class-wc-cptbot-helper.php:1719
 msgid "Top Queried Product"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2824
+#: helper/class-wc-cptbot-helper.php:1729
 msgid "Bot Coupons Applied"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2893
-#: helper/class-wc-cptbot-helper.php:2933
+#: helper/class-wc-cptbot-helper.php:1798
+#: helper/class-wc-cptbot-helper.php:1838
 msgid "Average response time"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2907
+#: helper/class-wc-cptbot-helper.php:1812
 msgid "Faster than previous"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2907
+#: helper/class-wc-cptbot-helper.php:1812
 msgid "Slower than previous"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:2914
-#: helper/class-wc-cptbot-helper.php:2929
+#: helper/class-wc-cptbot-helper.php:1819
+#: helper/class-wc-cptbot-helper.php:1834
 msgid "Avg AI Latency"
 msgstr ""
 
-#: helper/class-wc-cptbot-helper.php:3048
+#: helper/class-wc-cptbot-helper.php:1953
 msgid "(no title)"
 msgstr ""
 
@@ -196,8 +195,6 @@ msgstr ""
 #: helper/class-wc-cptbot-pinecone.php:162
 #: helper/class-wc-cptbot-pinecone.php:263
 #: helper/class-wc-cptbot-pinecone.php:270
-#: includes/admin/class-wc-cptbot-admin-functions.php:516
-#: includes/admin/class-wc-cptbot-admin-functions.php:536
 msgid "Error"
 msgstr ""
 
@@ -235,608 +232,518 @@ msgstr ""
 
 #: includes/admin/class-wc-cptbot-admin-functions.php:91
 #: includes/admin/class-wc-cptbot-admin-functions.php:92
-#: includes/admin/class-wc-cptbot-admin-functions.php:453
+#: includes/admin/class-wc-cptbot-admin-functions.php:492
 #: includes/front/class-wc-cptbot-front-functions.php:110
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:57
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:55
 msgid "Autonomous AI Chatbot"
 msgstr ""
 
 #: includes/admin/class-wc-cptbot-admin-functions.php:128
-msgid "View WooCommerce Chatgpt Chatbot documentation"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:128
-msgid "Docs"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:129
 msgid "Visit Webkul community forums"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:129
+#: includes/admin/class-wc-cptbot-admin-functions.php:128
 msgid "Community support"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:184
-#: includes/class-wc-cptbot-translations.php:87
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:39
+#: includes/admin/class-wc-cptbot-admin-functions.php:203
+#: includes/class-wc-cptbot-translations.php:89
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:35
 msgid "Dashboard"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:185
-#: includes/class-wc-cptbot-translations.php:130
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:43
+#: includes/admin/class-wc-cptbot-admin-functions.php:204
+#: includes/class-wc-cptbot-translations.php:133
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:39
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:190
+#: includes/admin/class-wc-cptbot-admin-functions.php:209
 #: includes/class-wc-cptbot-pro-banner.php:317
 msgid "Activate Pro"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:193
+#: includes/admin/class-wc-cptbot-admin-functions.php:212
 msgid "Get Pro"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:259
-#: includes/class-wc-cptbot-translations.php:49
-#: includes/class-wc-cptbot-translations.php:135
+#: includes/admin/class-wc-cptbot-admin-functions.php:278
+#: includes/class-wc-cptbot-translations.php:51
+#: includes/class-wc-cptbot-translations.php:138
 msgid "Processing"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:260
+#: includes/admin/class-wc-cptbot-admin-functions.php:279
 msgid "Completed"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:372
+#: includes/admin/class-wc-cptbot-admin-functions.php:411
 msgid "Custom Content"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:376
+#: includes/admin/class-wc-cptbot-admin-functions.php:415
 msgid "Voice Content"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:383
+#: includes/admin/class-wc-cptbot-admin-functions.php:422
 msgid "Post"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:384
+#: includes/admin/class-wc-cptbot-admin-functions.php:423
 msgid "Page"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:385
+#: includes/admin/class-wc-cptbot-admin-functions.php:424
 msgid "Product"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:389
-#: includes/admin/class-wc-cptbot-admin-functions.php:1715
+#: includes/admin/class-wc-cptbot-admin-functions.php:428
+#: includes/admin/class-wc-cptbot-admin-functions.php:1124
 #: includes/class-wc-cptbot-pro-banner.php:256
 msgid "Activate PRO Plugin"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:389
-#: includes/admin/class-wc-cptbot-admin-functions.php:1719
+#: includes/admin/class-wc-cptbot-admin-functions.php:428
+#: includes/admin/class-wc-cptbot-admin-functions.php:1128
 #: includes/class-wc-cptbot-pro-banner.php:258
 #: includes/class-wc-cptbot-pro-banner.php:319
 #: includes/front/class-wc-cptbot-front-functions.php:251
 msgid "Upgrade to PRO"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:390
+#: includes/admin/class-wc-cptbot-admin-functions.php:429
 msgid ""
 "Activate the PRO plugin to automatically generate complete WooCommerce "
 "product listings directly with AI."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:390
+#: includes/admin/class-wc-cptbot-admin-functions.php:429
 msgid ""
 "Upgrade to Autonomous AI Chatbot Pro to automatically draft WooCommerce "
 "products, detailed specifications, and short descriptions directly into "
 "your store catalog."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:394
+#: includes/admin/class-wc-cptbot-admin-functions.php:433
 msgid "Topic"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:395
-#: includes/class-wc-cptbot-translations.php:123
+#: includes/admin/class-wc-cptbot-admin-functions.php:434
+#: includes/class-wc-cptbot-translations.php:126
 msgid "Suggest Topic"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:396
+#: includes/admin/class-wc-cptbot-admin-functions.php:435
 msgid "Custom Topic"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:397
+#: includes/admin/class-wc-cptbot-admin-functions.php:436
 msgid "Example: Mobile phone"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:400
+#: includes/admin/class-wc-cptbot-admin-functions.php:439
 msgid "Sections"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:401
+#: includes/admin/class-wc-cptbot-admin-functions.php:440
 msgid "Create Sections"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:404
+#: includes/admin/class-wc-cptbot-admin-functions.php:443
 msgid "Content"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:405
+#: includes/admin/class-wc-cptbot-admin-functions.php:444
 msgid "Create Content"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:408
+#: includes/admin/class-wc-cptbot-admin-functions.php:447
 msgid "Excerpt"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:409
+#: includes/admin/class-wc-cptbot-admin-functions.php:448
 msgid "Create Excerpt"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:412
+#: includes/admin/class-wc-cptbot-admin-functions.php:451
 msgid "Meta Description"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:413
+#: includes/admin/class-wc-cptbot-admin-functions.php:452
 msgid "Create Meta"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:498
+#: includes/admin/class-wc-cptbot-admin-functions.php:537
 msgid "Model is downloading..."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:499
+#: includes/admin/class-wc-cptbot-admin-functions.php:538
 msgid "Download failed. Please try again."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:500
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:387
+#: includes/admin/class-wc-cptbot-admin-functions.php:539
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:390
 msgid "Model downloaded successfully."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:501
+#: includes/admin/class-wc-cptbot-admin-functions.php:540
 msgid "Please wait, We are preparing to download the ai model."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:518
-msgid "Product training requires the WooCommerce PRO addon."
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:587
-msgid "Products Trained Successfully"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:591
-msgid "Products Training Failed"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:596
-msgid "Index not found"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:604
-#: includes/admin/class-wc-cptbot-admin-functions.php:636
-#: includes/admin/class-wc-cptbot-admin-functions.php:681
-msgid "Nonce verification failed"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:627
-msgid "Sync reset successfully"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:674
-msgid "Training data reset successfully"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:831
-msgid "Empty Products"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:852
+#: includes/admin/class-wc-cptbot-admin-functions.php:556
 msgid ""
 "Pinecone index operations are only available when Pinecone is selected as "
 "the Vector DB."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1213
+#: includes/admin/class-wc-cptbot-admin-functions.php:917
 msgid "Chat Name is Empty"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1440
+#: includes/admin/class-wc-cptbot-admin-functions.php:947
 msgid "Generate Description With AI"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1520
-msgid ""
-"Write a decent description in provided context Tone: Friendly. , Current "
-"context: "
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:1535
-msgid "Enter Product Name First"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:1716
+#: includes/admin/class-wc-cptbot-admin-functions.php:1125
 msgid ""
 "Activate the PRO plugin to view shopping insights, analytics, and your "
 "store's top 5 most searched products."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1720
+#: includes/admin/class-wc-cptbot-admin-functions.php:1129
 msgid ""
 "Upgrade to the PRO addon to view shopping insights, analytics, and your "
 "store's top 5 most searched products."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1729
+#: includes/admin/class-wc-cptbot-admin-functions.php:1138
 msgid "Top Searched Products"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1799
+#: includes/admin/class-wc-cptbot-admin-functions.php:1188
 msgid "Invalid security token"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1848
+#: includes/admin/class-wc-cptbot-admin-functions.php:1237
 msgid "Product Training"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1853
+#: includes/admin/class-wc-cptbot-admin-functions.php:1242
 msgid "All"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1854
-#: includes/admin/class-wc-cptbot-admin-functions.php:1880
-#: includes/admin/class-wc-cptbot-admin-functions.php:1888
-#: includes/admin/class-wc-cptbot-admin-functions.php:1896
-#: includes/admin/class-wc-cptbot-admin-functions.php:1904
-#: includes/admin/class-wc-cptbot-admin-functions.php:1912
-#: includes/admin/class-wc-cptbot-admin-functions.php:1920
-#: includes/admin/class-wc-cptbot-admin-functions.php:1928
-#: includes/admin/class-wc-cptbot-admin-functions.php:1936
-#: includes/admin/class-wc-cptbot-admin-functions.php:2751
-#: includes/admin/class-wc-cptbot-admin-functions.php:2753
-#: includes/admin/class-wc-cptbot-admin-functions.php:3331
-#: includes/admin/class-wc-cptbot-admin-functions.php:3347
+#: includes/admin/class-wc-cptbot-admin-functions.php:1243
+#: includes/admin/class-wc-cptbot-admin-functions.php:1269
+#: includes/admin/class-wc-cptbot-admin-functions.php:1277
+#: includes/admin/class-wc-cptbot-admin-functions.php:1285
+#: includes/admin/class-wc-cptbot-admin-functions.php:1293
+#: includes/admin/class-wc-cptbot-admin-functions.php:1301
+#: includes/admin/class-wc-cptbot-admin-functions.php:1309
+#: includes/admin/class-wc-cptbot-admin-functions.php:1317
+#: includes/admin/class-wc-cptbot-admin-functions.php:1325
+#: includes/admin/class-wc-cptbot-admin-functions.php:1756
+#: includes/admin/class-wc-cptbot-admin-functions.php:1758
+#: includes/admin/class-wc-cptbot-admin-functions.php:2328
+#: includes/admin/class-wc-cptbot-admin-functions.php:2344
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:143
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:521
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:541
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:705
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:600
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:620
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:784
 msgid "Synced"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1855
+#: includes/admin/class-wc-cptbot-admin-functions.php:1244
 msgid "Unsynced"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1858
+#: includes/admin/class-wc-cptbot-admin-functions.php:1247
 msgid "Search products…"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1859
-#: includes/class-wc-cptbot-translations.php:74
+#: includes/admin/class-wc-cptbot-admin-functions.php:1248
+#: includes/class-wc-cptbot-translations.php:76
 msgid "Search"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1865
+#: includes/admin/class-wc-cptbot-admin-functions.php:1254
 msgid "Product ID"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1866
+#: includes/admin/class-wc-cptbot-admin-functions.php:1255
 msgid "Product Name"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1867
+#: includes/admin/class-wc-cptbot-admin-functions.php:1256
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:91
 msgid "Type"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1868
+#: includes/admin/class-wc-cptbot-admin-functions.php:1257
 msgid "SKU"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1869
+#: includes/admin/class-wc-cptbot-admin-functions.php:1258
 msgid "Category"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1870
+#: includes/admin/class-wc-cptbot-admin-functions.php:1259
 msgid "Vector Sync Status"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1948
-#: includes/admin/class-wc-cptbot-admin-functions.php:1958
+#: includes/admin/class-wc-cptbot-admin-functions.php:1337
+#: includes/admin/class-wc-cptbot-admin-functions.php:1347
 msgid "WooCommerce Product Training"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1949
+#: includes/admin/class-wc-cptbot-admin-functions.php:1338
 msgid ""
 "Train and synchronize your WooCommerce products (Single, Variable, "
 "Grouped), stock status, and attributes with Pinecone, ChromaDB, or ONNX "
 "vector embeddings."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1959
+#: includes/admin/class-wc-cptbot-admin-functions.php:1348
 msgid ""
 "Upgrade to the PRO addon to automatically vectorize and synchronize your "
 "WooCommerce products (Single, Variable, Grouped), stock status, categories, "
 "and attributes with Pinecone, ChromaDB, or ONNX."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:1980
-msgid "Rescheduling product training requires the WooCommerce PRO addon."
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2093
-#: includes/class-wc-cptbot-translations.php:177
+#: includes/admin/class-wc-cptbot-admin-functions.php:1387
+#: includes/class-wc-cptbot-translations.php:182
 msgid "Suggest"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2093
-#: includes/class-wc-cptbot-translations.php:177
+#: includes/admin/class-wc-cptbot-admin-functions.php:1387
+#: includes/class-wc-cptbot-translations.php:182
 msgid "title for an article about"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2096
-#: includes/class-wc-cptbot-translations.php:178
+#: includes/admin/class-wc-cptbot-admin-functions.php:1390
+#: includes/class-wc-cptbot-translations.php:183
 msgid "Write"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2096
-#: includes/class-wc-cptbot-translations.php:178
+#: includes/admin/class-wc-cptbot-admin-functions.php:1390
+#: includes/class-wc-cptbot-translations.php:183
 msgid "consecutive headings for an article about"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2099
-#: includes/class-wc-cptbot-translations.php:179
+#: includes/admin/class-wc-cptbot-admin-functions.php:1393
+#: includes/class-wc-cptbot-translations.php:184
 msgid "Write a comprehensive article about"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2099
+#: includes/admin/class-wc-cptbot-admin-functions.php:1393
 msgid "covering the following subtopics"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2099
-#: includes/class-wc-cptbot-translations.php:179
+#: includes/admin/class-wc-cptbot-admin-functions.php:1393
+#: includes/class-wc-cptbot-translations.php:184
 msgid "Each subtopic should have at least"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2099
+#: includes/admin/class-wc-cptbot-admin-functions.php:1393
 msgid "paragraphs."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2099
+#: includes/admin/class-wc-cptbot-admin-functions.php:1393
 msgid ""
 "Use a cohesive structure to ensure smooth transitions between ideas. "
 "Include relevant statistics, examples, and quotes to support your arguments "
 "and engage the reader."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2102
-#: includes/class-wc-cptbot-translations.php:180
+#: includes/admin/class-wc-cptbot-admin-functions.php:1396
+#: includes/class-wc-cptbot-translations.php:185
 msgid "Generate an excerpt for"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2102
+#: includes/admin/class-wc-cptbot-admin-functions.php:1396
 msgid "Max: 55 words."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2105
+#: includes/admin/class-wc-cptbot-admin-functions.php:1399
 msgid "Write a meta description about"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2105
+#: includes/admin/class-wc-cptbot-admin-functions.php:1399
 msgid "Max: 155 characters."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2222
-msgid "Creating WooCommerce Products requires the Autonomous AI Chatbot Pro addon."
+#: includes/admin/class-wc-cptbot-admin-functions.php:1517
+msgid "Creating this post type requires the Autonomous AI Chatbot Pro addon."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2271
+#: includes/admin/class-wc-cptbot-admin-functions.php:1566
 msgid "ONNX Model"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2274
+#: includes/admin/class-wc-cptbot-admin-functions.php:1569
 msgid "Ternlight"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2277
+#: includes/admin/class-wc-cptbot-admin-functions.php:1572
 msgid "Gemini"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2280
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:848
+#: includes/admin/class-wc-cptbot-admin-functions.php:1575
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:851
 msgid "OpenAI"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2310
-msgid "Product data extraction requires the WooCommerce PRO addon."
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2317
-#: includes/admin/class-wc-cptbot-admin-functions.php:2431
-msgid "Something went wrong, please try again."
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2386
-msgid "Product found successfully!"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2396
-msgid "Training Complete"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2402
-msgid "Product is not found!"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2406
-#: includes/admin/class-wc-cptbot-admin-functions.php:2583
-msgid "Nonce verification failed!"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2424
-msgid "Product vector upsert requires the WooCommerce PRO addon."
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2556
-#: includes/class-wc-cptbot-translations.php:46
-msgid "Product Trained Sucessfully"
-msgstr ""
-
-#: includes/admin/class-wc-cptbot-admin-functions.php:2671
+#: includes/admin/class-wc-cptbot-admin-functions.php:1675
 msgid "Unable to download the onxx model, Please refresh the page to try again."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2677
+#: includes/admin/class-wc-cptbot-admin-functions.php:1681
 msgid "Onxx model downloaded successfully."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2703
-#: includes/admin/class-wc-cptbot-admin-functions.php:2710
+#: includes/admin/class-wc-cptbot-admin-functions.php:1707
+#: includes/admin/class-wc-cptbot-admin-functions.php:1714
 msgid "AI Chatbot Sync"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2751
+#: includes/admin/class-wc-cptbot-admin-functions.php:1756
+#. translators: %s: last synced date/time
 msgid "Synced on %s"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2756
-#: includes/admin/class-wc-cptbot-admin-functions.php:2763
-#: includes/admin/class-wc-cptbot-admin-functions.php:3334
-#: includes/admin/class-wc-cptbot-admin-functions.php:3350
+#: includes/admin/class-wc-cptbot-admin-functions.php:1761
+#: includes/admin/class-wc-cptbot-admin-functions.php:1768
+#: includes/admin/class-wc-cptbot-admin-functions.php:2331
+#: includes/admin/class-wc-cptbot-admin-functions.php:2347
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:150
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:531
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:551
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:610
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:630
 msgid "Re-sync"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2759
+#: includes/admin/class-wc-cptbot-admin-functions.php:1764
 msgid "Modified since last sync"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2760
+#: includes/admin/class-wc-cptbot-admin-functions.php:1765
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:145
 msgid "Modified"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2767
+#: includes/admin/class-wc-cptbot-admin-functions.php:1772
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:147
 msgid "Not Synced"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2770
+#: includes/admin/class-wc-cptbot-admin-functions.php:1775
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:150
 msgid "Sync Now"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2785
+#: includes/admin/class-wc-cptbot-admin-functions.php:1790
 msgid "Sync with AI Chatbot"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2834
+#: includes/admin/class-wc-cptbot-admin-functions.php:1839
 msgid "Invalid post or page."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2845
+#: includes/admin/class-wc-cptbot-admin-functions.php:1850
 msgid "Empty content, nothing to vectorize."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2887
-#: includes/admin/class-wc-cptbot-admin-functions.php:3328
-#: includes/admin/class-wc-cptbot-admin-functions.php:3344
+#: includes/admin/class-wc-cptbot-admin-functions.php:1892
+#: includes/admin/class-wc-cptbot-admin-functions.php:2325
+#: includes/admin/class-wc-cptbot-admin-functions.php:2341
 msgid "Post synchronized successfully."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2892
+#: includes/admin/class-wc-cptbot-admin-functions.php:1897
 msgid "Vector DB upsert failed."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2901
+#: includes/admin/class-wc-cptbot-admin-functions.php:1906
 #. translators: %s: model name
 msgid ""
 "Failed to generate embeddings using %s. Please verify your API key and "
 "settings."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2926
-#: includes/admin/class-wc-cptbot-admin-functions.php:2972
-#: includes/admin/class-wc-cptbot-admin-functions.php:3039
-#: includes/admin/class-wc-cptbot-admin-functions.php:3067
-#: includes/admin/class-wc-cptbot-admin-functions.php:3116
+#: includes/admin/class-wc-cptbot-admin-functions.php:1931
+#: includes/admin/class-wc-cptbot-admin-functions.php:1977
+#: includes/admin/class-wc-cptbot-admin-functions.php:2044
+#: includes/admin/class-wc-cptbot-admin-functions.php:2072
+#: includes/admin/class-wc-cptbot-admin-functions.php:2121
 msgid "Security check failed."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2982
+#: includes/admin/class-wc-cptbot-admin-functions.php:1987
 msgid "Invalid post ID or embedding vector."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:2987
+#: includes/admin/class-wc-cptbot-admin-functions.php:1992
 msgid "Post or Page not found."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3020
+#: includes/admin/class-wc-cptbot-admin-functions.php:2025
 msgid "Vector saved successfully."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3028
+#: includes/admin/class-wc-cptbot-admin-functions.php:2033
 msgid "Vector database upsert failed."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3044
+#: includes/admin/class-wc-cptbot-admin-functions.php:2049
 msgid "Missing post ID."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3132
+#: includes/admin/class-wc-cptbot-admin-functions.php:2129
 msgid "Posts & Pages sync reset successfully."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3298
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:490
+#: includes/admin/class-wc-cptbot-admin-functions.php:2295
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:569
 msgid "Syncing…"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3315
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:507
+#: includes/admin/class-wc-cptbot-admin-functions.php:2312
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:586
 msgid "Loading AI…"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3318
+#: includes/admin/class-wc-cptbot-admin-functions.php:2315
 msgid ""
 "ONNX AI model failed to initialize in browser. Please check console or "
 "refresh."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3319
-#: includes/admin/class-wc-cptbot-admin-functions.php:3340
-#: includes/admin/class-wc-cptbot-admin-functions.php:3357
-#: includes/admin/class-wc-cptbot-admin-functions.php:3362
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:511
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:536
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:557
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:562
+#: includes/admin/class-wc-cptbot-admin-functions.php:2316
+#: includes/admin/class-wc-cptbot-admin-functions.php:2337
+#: includes/admin/class-wc-cptbot-admin-functions.php:2354
+#: includes/admin/class-wc-cptbot-admin-functions.php:2359
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:590
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:615
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:636
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:641
 msgid "Retry"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3324
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:516
+#: includes/admin/class-wc-cptbot-admin-functions.php:2321
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:595
 msgid "Embedding…"
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3338
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:534
+#: includes/admin/class-wc-cptbot-admin-functions.php:2335
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:613
 msgid "Vector upsert failed."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3355
+#: includes/admin/class-wc-cptbot-admin-functions.php:2352
 msgid "Sync failed."
 msgstr ""
 
-#: includes/admin/class-wc-cptbot-admin-functions.php:3361
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:561
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:838
+#: includes/admin/class-wc-cptbot-admin-functions.php:2358
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:640
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:917
 msgid "AJAX error: "
 msgstr ""
 
@@ -865,374 +772,378 @@ msgstr ""
 msgid "Lite"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:27
+#: includes/class-wc-cptbot-translations.php:29
 msgid "Loading ONNX Model..."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:28
+#: includes/class-wc-cptbot-translations.php:30
 msgid "✅ ONNX Model Ready"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:29
+#: includes/class-wc-cptbot-translations.php:31
 msgid "❌ ONNX Model Error"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:30
+#: includes/class-wc-cptbot-translations.php:32
 msgid "Please wait"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:31
+#: includes/class-wc-cptbot-translations.php:33
 msgid "An error occurred during synchronization"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:32
+#: includes/class-wc-cptbot-translations.php:34
 msgid "Index Creating"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:33
+#: includes/class-wc-cptbot-translations.php:35
 msgid "Index Successfully Created"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:34
+#: includes/class-wc-cptbot-translations.php:36
 msgid "Something Went Wrong"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:35
+#: includes/class-wc-cptbot-translations.php:37
 #: templates/admin/settings/class-wc-cptbot-configuration-ui.php:243
 msgid "Recreate Index"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:36
+#: includes/class-wc-cptbot-translations.php:38
 msgid "Products Syncing With Autonomous AI Chatbot..."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:37
+#: includes/class-wc-cptbot-translations.php:39
 msgid "Product Successfully exported to Autonomous AI Chatbot"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:38
+#: includes/class-wc-cptbot-translations.php:40
 msgid "Ask Again"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:39
+#: includes/class-wc-cptbot-translations.php:41
 msgid "Thinking"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:40
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1010
+#: includes/class-wc-cptbot-translations.php:42
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1013
 msgid "ChatBot Avatar"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:41
+#: includes/class-wc-cptbot-translations.php:43
 msgid "Upload Invoice Logo"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:42
+#: includes/class-wc-cptbot-translations.php:44
 msgid "ChatBot Background Image"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:43
+#: includes/class-wc-cptbot-translations.php:45
 msgid "Upload Background Image"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:44
+#: includes/class-wc-cptbot-translations.php:46
 msgid "ChatBot AI Logo"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:45
+#: includes/class-wc-cptbot-translations.php:47
 msgid "Upload AI Logo"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:47
+#: includes/class-wc-cptbot-translations.php:48
+msgid "Product Trained Sucessfully"
+msgstr ""
+
+#: includes/class-wc-cptbot-translations.php:49
 msgid "Image Format Found"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:48
+#: includes/class-wc-cptbot-translations.php:50
 msgid "Need"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:50
-#. translators: %s WooCommerce plugin links
-msgid "Thank You for Purchasing %1$s by %2$s"
-msgstr ""
-
-#: includes/class-wc-cptbot-translations.php:51
-msgid "Chatbot version"
-msgstr ""
-
 #: includes/class-wc-cptbot-translations.php:52
-msgid "Running"
+#. translators: %s WooCommerce plugin links
+msgid "Thank You for using %1$s by %2$s"
 msgstr ""
 
 #: includes/class-wc-cptbot-translations.php:53
-msgid "Pinecone Index Created Successfully"
+msgid "Chatbot version"
 msgstr ""
 
 #: includes/class-wc-cptbot-translations.php:54
-msgid "Warning"
+msgid "Running"
 msgstr ""
 
 #: includes/class-wc-cptbot-translations.php:55
+msgid "Pinecone Index Created Successfully"
+msgstr ""
+
+#: includes/class-wc-cptbot-translations.php:56
+msgid "Warning"
+msgstr ""
+
+#: includes/class-wc-cptbot-translations.php:57
 msgid ""
 "Changing the Embeddings Model or Vector DB will delete all existing trained "
 "data. You will need to retrain all products, posts, and pages from scratch."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:56
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:908
+#: includes/class-wc-cptbot-translations.php:58
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:987
 msgid "Yes, Delete & Proceed"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:57
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:909
+#: includes/class-wc-cptbot-translations.php:59
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:988
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:60
+#: includes/class-wc-cptbot-translations.php:62
 msgid "Please enter %qty% or more characters"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:61
+#: includes/class-wc-cptbot-translations.php:63
 msgid "No Matches Found"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:63
+#: includes/class-wc-cptbot-translations.php:65
 msgid "Message From"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:64
+#: includes/class-wc-cptbot-translations.php:66
 msgid "Message"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:65
+#: includes/class-wc-cptbot-translations.php:67
 msgid "Date"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:67
+#: includes/class-wc-cptbot-translations.php:69
 msgid "Are You Sure You Want to"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:68
+#: includes/class-wc-cptbot-translations.php:70
 msgid "This User"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:69
+#: includes/class-wc-cptbot-translations.php:71
 msgid "Chat History"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:70
+#: includes/class-wc-cptbot-translations.php:72
 msgid "Chat Filter"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:71
+#: includes/class-wc-cptbot-translations.php:73
 msgid "UserName"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:72
+#: includes/class-wc-cptbot-translations.php:74
 msgid "From"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:73
+#: includes/class-wc-cptbot-translations.php:75
 msgid "To"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:75
+#: includes/class-wc-cptbot-translations.php:77
 msgid "Download"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:76
+#: includes/class-wc-cptbot-translations.php:78
 msgid "This User is Blocked"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:77
+#: includes/class-wc-cptbot-translations.php:79
 msgid "Block This User For Not Using ChatBot"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:78
+#: includes/class-wc-cptbot-translations.php:80
 msgid "Unblock"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:79
+#: includes/class-wc-cptbot-translations.php:81
 msgid "Block"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:80
+#: includes/class-wc-cptbot-translations.php:82
 msgid "Created by"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:81
+#: includes/class-wc-cptbot-translations.php:83
 msgid "on date"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:82
+#: includes/class-wc-cptbot-translations.php:84
 msgid "Looks responce is not correct check your settings."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:83
+#: includes/class-wc-cptbot-translations.php:85
 msgid "No Chat found between these dates"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:86
+#: includes/class-wc-cptbot-translations.php:88
 msgid "Total Chats Count"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:88
+#: includes/class-wc-cptbot-translations.php:90
 msgid "User Traffic over chatbot"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:89
+#: includes/class-wc-cptbot-translations.php:91
 msgid "Messages"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:90
+#: includes/class-wc-cptbot-translations.php:92
 msgid "Todays Users over Chatbot"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:91
+#: includes/class-wc-cptbot-translations.php:93
 msgid "Email"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:92
+#: includes/class-wc-cptbot-translations.php:94
 msgid "Message Count"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:93
+#: includes/class-wc-cptbot-translations.php:95
 msgid "User Chat not Found."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:94
+#: includes/class-wc-cptbot-translations.php:96
 msgid "Most Asked Products"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:95
+#: includes/class-wc-cptbot-translations.php:97
 msgid "Total"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:108
+#: includes/class-wc-cptbot-translations.php:111
 msgid "Recreate Topic"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:109
+#: includes/class-wc-cptbot-translations.php:112
 msgid "Recreate Sections"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:110
+#: includes/class-wc-cptbot-translations.php:113
 msgid "Recreate Content"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:111
+#: includes/class-wc-cptbot-translations.php:114
 msgid "Recreate Excerpt"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:112
+#: includes/class-wc-cptbot-translations.php:115
 msgid "Recreate Meta"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:113
+#: includes/class-wc-cptbot-translations.php:116
 msgid "Topic Set Successfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:114
+#: includes/class-wc-cptbot-translations.php:117
 msgid "Section created sucessfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:115
+#: includes/class-wc-cptbot-translations.php:118
 msgid "Content created sucessfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:116
+#: includes/class-wc-cptbot-translations.php:119
 msgid "Excerpt created sucessfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:117
+#: includes/class-wc-cptbot-translations.php:120
 msgid "Meta created sucessfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:118
+#: includes/class-wc-cptbot-translations.php:121
 msgid "Fill the topic first"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:119
+#: includes/class-wc-cptbot-translations.php:122
 msgid "Select Topic First"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:120
+#: includes/class-wc-cptbot-translations.php:123
 msgid "Topic or Content are Empty"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:121
+#: includes/class-wc-cptbot-translations.php:124
 msgid "Topic are Empty"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:122
+#: includes/class-wc-cptbot-translations.php:125
 msgid "Save Topic"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:124
+#: includes/class-wc-cptbot-translations.php:127
 msgid "Suggestion Used Successfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:125
+#: includes/class-wc-cptbot-translations.php:128
 msgid "Open AI Setting saved Successfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:126
+#: includes/class-wc-cptbot-translations.php:129
 msgid "Everything looks Same"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:127
+#: includes/class-wc-cptbot-translations.php:130
 msgid "created sucessfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:128
+#: includes/class-wc-cptbot-translations.php:131
 msgid "already exist"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:129
+#: includes/class-wc-cptbot-translations.php:132
 msgid "First Create All Required Fields"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:131
+#: includes/class-wc-cptbot-translations.php:134
 msgid "Create"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:132
+#: includes/class-wc-cptbot-translations.php:135
 msgid "Save Settings"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:133
+#: includes/class-wc-cptbot-translations.php:136
 msgid "Suggestions From AI"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:134
+#: includes/class-wc-cptbot-translations.php:137
 msgid "Use"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:136
+#: includes/class-wc-cptbot-translations.php:139
 msgid "Content Copied Successfully"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:137
+#: includes/class-wc-cptbot-translations.php:140
 msgid "Copied"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:138
+#: includes/class-wc-cptbot-translations.php:141
 msgid "Listening"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:139
+#: includes/class-wc-cptbot-translations.php:142
 msgid "Speak"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:140
+#: includes/class-wc-cptbot-translations.php:143
 msgid "User Text"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:141
+#: includes/class-wc-cptbot-translations.php:144
 msgid "AI Text"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:142
+#: includes/class-wc-cptbot-translations.php:145
 msgid ""
 "Example: Write a blog post about the latest mobile phones and their "
 "features. Include an introduction that highlights the importance of mobile "
@@ -1244,87 +1155,87 @@ msgid ""
 "key points of the post"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:154
+#: includes/class-wc-cptbot-translations.php:158
 msgid "Hello How can i Help You?"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:155
+#: includes/class-wc-cptbot-translations.php:159
 msgid "Speech recognition not supported in this browser."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:157
+#: includes/class-wc-cptbot-translations.php:161
 msgid "Want to know something"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:179
+#: includes/class-wc-cptbot-translations.php:184
 msgid ", covering the following subtopics"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:179
+#: includes/class-wc-cptbot-translations.php:184
 msgid ""
 "paragraphs. Use a cohesive structure to ensure smooth transitions between "
 "ideas. Include relevant statistics, examples, and quotes to support your "
 "arguments and engage the reader."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:180
+#: includes/class-wc-cptbot-translations.php:185
 msgid "Max: 55 words"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:185
+#: includes/class-wc-cptbot-translations.php:190
 msgid "Temperature"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:194
+#: includes/class-wc-cptbot-translations.php:199
 msgid "Max Tokens"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:203
+#: includes/class-wc-cptbot-translations.php:208
 msgid "Top P"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:212
+#: includes/class-wc-cptbot-translations.php:217
 msgid "Prompt for Title"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:220
-#: includes/class-wc-cptbot-translations.php:231
-#: includes/class-wc-cptbot-translations.php:242
-#: includes/class-wc-cptbot-translations.php:253
-#: includes/class-wc-cptbot-translations.php:264
+#: includes/class-wc-cptbot-translations.php:225
+#: includes/class-wc-cptbot-translations.php:236
+#: includes/class-wc-cptbot-translations.php:247
+#: includes/class-wc-cptbot-translations.php:258
+#: includes/class-wc-cptbot-translations.php:269
 msgid "Ensure"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:220
-#: includes/class-wc-cptbot-translations.php:231
-#: includes/class-wc-cptbot-translations.php:242
+#: includes/class-wc-cptbot-translations.php:225
+#: includes/class-wc-cptbot-translations.php:236
+#: includes/class-wc-cptbot-translations.php:247
 msgid "and"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:220
-#: includes/class-wc-cptbot-translations.php:231
-#: includes/class-wc-cptbot-translations.php:253
-#: includes/class-wc-cptbot-translations.php:264
+#: includes/class-wc-cptbot-translations.php:225
+#: includes/class-wc-cptbot-translations.php:236
+#: includes/class-wc-cptbot-translations.php:258
+#: includes/class-wc-cptbot-translations.php:269
 msgid "is included in your prompt."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:223
+#: includes/class-wc-cptbot-translations.php:228
 msgid "Prompt for Sections"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:234
+#: includes/class-wc-cptbot-translations.php:239
 msgid "Prompt for Content"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:242
+#: includes/class-wc-cptbot-translations.php:247
 msgid "are included in your prompt."
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:245
+#: includes/class-wc-cptbot-translations.php:250
 msgid "Prompt for Excerpt"
 msgstr ""
 
-#: includes/class-wc-cptbot-translations.php:256
+#: includes/class-wc-cptbot-translations.php:261
 msgid "Prompt for Meta"
 msgstr ""
 
@@ -1347,23 +1258,11 @@ msgstr ""
 msgid "Answer fetched successfully."
 msgstr ""
 
-#: includes/front/class-wc-cptbot-front-functions.php:305
-msgid "Categories fetched successfully."
-msgstr ""
-
-#: includes/front/class-wc-cptbot-front-functions.php:326
-msgid "Quality Products fetched successfully."
-msgstr ""
-
-#: includes/front/class-wc-cptbot-front-functions.php:343
-msgid "Product fetched successfully."
-msgstr ""
-
-#: includes/front/class-wc-cptbot-front-functions.php:372
+#: includes/front/class-wc-cptbot-front-functions.php:314
 msgid "User prompt loaded successfully."
 msgstr ""
 
-#: includes/front/class-wc-cptbot-front-functions.php:559
+#: includes/front/class-wc-cptbot-front-functions.php:501
 msgid "Error: No embedding data received"
 msgstr ""
 
@@ -1372,301 +1271,309 @@ msgid "Create Index"
 msgstr ""
 
 #: templates/admin/settings/class-wc-cptbot-configuration-ui.php:338
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:351
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:390
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:400
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:354
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:393
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:403
 msgid "Dismiss this notice"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:348
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:351
 msgid "Configuration saved successfully."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:358
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:361
 msgid "Please wait, We are preparing to download ai model."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:374
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:377
 #. translators: %s: Download percentage.
 msgid "Model is downloading…%s"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:397
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:400
 msgid "Please click on download model button to download the model."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:406
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:409
 msgid "Configuration"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:407
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:410
 msgid "Download model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:417
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:420
 msgid "Model Settings"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:424
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:427
 msgid "Select Model Type"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:431
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:434
 msgid "E₅Small ONNX Model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:434
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:437
 msgid "Ternlight Base Model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:437
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:440
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:199
 msgid "Gemini Embedding Model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:440
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:443
 #: templates/admin/training/class-wc-cptbot-posts-pages-training.php:202
 msgid "OpenAI Embedding Model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:446
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:449
 msgid "Status"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:452
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:868
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:455
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:871
 msgid "Disable"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:455
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:458
 msgid "Enable"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:469
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:472
 msgid "Gemini API Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:484
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:487
 msgid "Gemini Embedding Model Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:504
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:507
 msgid "OpenAI API Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:520
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:523
 msgid "OpenAI Embedding Model Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:562
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:565
 msgid "Vector DB Selection"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:569
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:572
 msgid "Vector DB"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:575
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:578
 msgid "Pinecone"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:578
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:581
 msgid "ChromaDB"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:589
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:592
 msgid "Chroma Base URL"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:604
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:607
 msgid "Chroma Collection Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:619
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:622
 msgid "Chroma API Key (optional)"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:636
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:639
 msgid "PineCone Settings"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:641
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:644
 msgid "Create Pinecone Index for collecting your WooCommerce Products embadded data"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:652
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:655
 msgid "Secret Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:668
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:671
 msgid "Environment"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:685
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:688
 msgid "Base URL"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:717
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:720
 msgid "Index Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:735
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:738
 #. translators: %s pinecone links
 msgid "%s to Generate The Pinecone Keys."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:735
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:738
 msgid "Click Here"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:766
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:769
 msgid "API Configuration"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:774
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:777
 msgid "API Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:789
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:792
 msgid "API Base URL"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:804
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:807
 msgid "Model Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:819
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:822
 msgid "TypeSafe API Key (Jev Intent)"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:829
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:832
 msgid "TypeSafe Model"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:839
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:842
 msgid "TypeSafe Confidence Threshold"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:848
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:851
 #. translators: %s openai links
 msgid ""
 "Embeddings will be computed locally using ONNX model (e5-small). Get API "
 "keys from: %s"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:853
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:897
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:906
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:856
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:900
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:909
 msgid "Stripe MCP In-Chat Checkout"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:864
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:867
 msgid "Enable Stripe MCP"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:876
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:879
 msgid "Stripe Publishable Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:886
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:889
 msgid "Stripe Secret Key"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:898
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:901
 msgid ""
 "Enable in-chat conversational checkout and direct Stripe payments for "
 "WooCommerce orders via Model Context Protocol (MCP)."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:907
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:910
 msgid ""
 "Upgrade to the PRO addon to enable in-chat checkout and direct Stripe "
 "payments for WooCommerce orders via Model Context Protocol (MCP)."
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:920
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:923
 msgid "Chat Box Settings"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:927
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:930
 msgid "ChatBot Name"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:935
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:938
 msgid "Ex: WooCommerce ChatBot"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:943
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:946
 msgid "Chatbot Position"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:948
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:951
 msgid "Right"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:955
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:958
 msgid "Left"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:965
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:968
 msgid "Primary Color"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:987
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:990
 msgid "Secondary Color"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1029
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1058
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1148
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1032
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1061
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1151
 msgid "Upload"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1039
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1042
 msgid "AI Logo"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1046
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1049
 msgid "Chatbot AI Logo"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1076
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1079
 msgid "Allow Voice Assistant"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1091
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1094
 msgid "Allow Animations"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1106
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1109
 msgid "Enable Guest History"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1121
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1124
 msgid "Allow Background image in Conversation History"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1129
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1132
 msgid "ChatBox Background Image"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1159
+#: templates/admin/settings/class-wc-cptbot-configuration-ui.php:1162
 msgid "Save Configurations"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:40
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:36
 msgid "Conversation History"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:41
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:37
 msgid "Content Creation"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:42
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:38
 msgid "Data Training"
 msgstr ""
 
-#: templates/admin/settings/class-wc-cptbot-tab-handler.php:56
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:40
+msgid "Extensions"
+msgstr ""
+
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:41
+msgid "Support & Services"
+msgstr ""
+
+#: templates/admin/settings/class-wc-cptbot-tab-handler.php:54
 msgid "Autonomous AI Chatbot Logo"
 msgstr ""
 
@@ -1762,149 +1669,151 @@ msgstr ""
 msgid "Total Posts and Pages"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:254
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:256
+#. translators: 1: number of posts, 2: number of pages
 msgid "Posts: %1$d | Pages: %2$d"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:259
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:262
 msgid "Synced to Vector DB"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:264
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:427
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:269
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:504
+#. translators: %d: number of pending items
 msgid "Pending: %d items"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:269
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:275
 msgid "Active Embedding Engine"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:274
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:280
 msgid "Configured in Settings"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:279
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:285
 msgid "Vector Database"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:284
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:290
 msgid "Ready for synchronization"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:284
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:290
 msgid "Please configure API keys"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:293
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:299
 msgid "Synchronize Knowledge Base"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:295
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:301
 msgid ""
 "Train the AI chatbot with your website store policies, about us page, "
 "contact info, and blog posts."
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:300
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:619
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:306
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:698
 msgid "Synchronize All Posts and Pages"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:304
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:310
 msgid "Reset Sync"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:319
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:333
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:634
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:325
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:339
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:713
 msgid "Synchronizing…"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:440
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:519
 msgid "Dismiss this notice."
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:481
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:560
 msgid ""
 "Batch synchronization is currently in progress. Please wait for it to "
 "finish."
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:510
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:589
 msgid ""
 "ONNX AI model failed to initialize in browser. Please check browser console "
 "or refresh."
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:520
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:540
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:704
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:599
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:619
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:783
 msgid "✓ Synced"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:555
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:634
 msgid "Sync failed"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:690
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:769
 msgid "Vectorizing Post/Page #"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:749
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:828
 msgid "Batch fetch failed: "
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:756
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:835
 msgid "Checking ONNX embedding engine…"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:763
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:842
 msgid ""
 "ONNX AI model could not be initialized in your browser. Please check "
 "browser console or try reloading."
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:770
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:849
 msgid "Vectorizing with Ternlight…"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:801
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:880
 msgid "Synchronized"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:826
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:905
 msgid "Batch synchronization error"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:853
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:932
 msgid "Synchronization Completed!"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:854
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:933
 msgid "All Posts and Pages synchronized successfully!"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:878
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:957
 msgid "Resuming synchronization…"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:903
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:982
 msgid "Reset Confirmation"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:905
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:984
 msgid "Are you sure you want to reset Posts and Pages synchronization data?"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:922
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:1001
 msgid "Processing…"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:936
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:1015
 msgid "Posts and Pages sync reset successfully!"
 msgstr ""
 
-#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:943
+#: templates/admin/training/class-wc-cptbot-posts-pages-training.php:1022
 msgid "Failed to reset sync. Please try again."
 msgstr ""
 
